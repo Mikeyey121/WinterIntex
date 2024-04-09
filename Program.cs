@@ -41,15 +41,23 @@ builder.Services.AddHsts(options =>
     // options.ExcludedHosts.Add("example.com"); // Use this to exclude specific hosts from HSTS
 });
 
-
+// Configuration for client size razor pages
 builder.Services.AddRazorPages();
 
+// Memory Cache and Session configuration for session
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 
-
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+// Configuration for server side blazor apps
 builder.Services.AddServerSideBlazor();
 
+// Add the scope for the cart
+builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+
+// Add the connection to the IHttpContextAccessor so we can use the current session for each user
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+// Setting app to builder.Build
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -70,6 +78,7 @@ app.UseHttpsRedirection();
 // Configure for static files we want to use
 app.UseStaticFiles();
 
+app.UseSession();
 
 // Configure for routing
 app.UseRouting();

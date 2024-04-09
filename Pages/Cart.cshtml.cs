@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WinterIntex.Infrastructure;
 using WinterIntex.Models;
 
 namespace WinterIntex.Pages
@@ -8,28 +9,36 @@ namespace WinterIntex.Pages
     public class CartModel : PageModel
     {
         private IProductRepository _repo;
-        private readonly ILogger<CartModel> _logger;
 
-        public CartModel(IProductRepository repo, ILogger<CartModel> logger)
+        public CartModel(IProductRepository repo, Cart cartService)
         {
             _repo = repo;
-            _logger = logger;
+            Cart = cartService;
         }
-        public Cart? Cart { get; set; }
-        public void OnGet()
+        public Cart Cart { get; set; }
+        public string ReturnUrl { get; set; } = "/";
+        public void OnGet(string returnUrl)
         {
+            ReturnUrl = returnUrl ?? "/";
         }
 
-        public void OnPost(string Product_ID)
+        public IActionResult OnPost(string Product_ID,string returnUrl)
         {
-            _logger.LogInformation($"The productId that came into the post is {Product_ID}");
             Product prod = _repo.Products
                 .FirstOrDefault(x => x.Product_ID == Product_ID);
 
-            Cart = new Cart();
-
-            _logger.LogInformation("The prod that was created is ", prod);
-            Cart.AddItem(prod, 1);
+            if (prod != null)
+            {
+                Cart.AddItem(prod, 1);
+            }
+            return RedirectToPage(new { returnUrl = returnUrl });
+        }
+        public IActionResult OnPostRemove(string Product_ID,
+                string returnUrl)
+        {
+            Cart.RemoveLine(Cart.Lines.First(cl =>
+                cl.Product.Product_ID == Product_ID).Product);
+            return RedirectToPage(new { returnUrl = returnUrl });
         }
     }
 }
