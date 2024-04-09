@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -28,8 +29,20 @@ builder.Services.AddDbContext<WinterIntexContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+// Add identity services
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    // Requirements for secure password
+    options.Password.RequiredLength = 20; // At least 20 characters
+    options.Password.RequireUppercase = true; // At least 1 uppercase letter
+    options.Password.RequireLowercase = true; // At least 1 lowercase letter
+    options.Password.RequireDigit = true; // At least 1 digit
+    options.Password.RequireNonAlphanumeric = true; // At least 1 special character
+    options.Password.RequiredUniqueChars = 6; // At least 6 unique characters
+    options.SignIn.RequireConfirmedAccount = true;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews();
 
 // Configure HSTS options
@@ -40,6 +53,11 @@ builder.Services.AddHsts(options =>
     options.MaxAge = TimeSpan.FromDays(365);
     // options.ExcludedHosts.Add("example.com"); // Use this to exclude specific hosts from HSTS
 });
+
+
+builder.Services.AddRazorPages();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 // Configuration for client size razor pages
 builder.Services.AddRazorPages();
@@ -53,6 +71,7 @@ builder.Services.AddServerSideBlazor();
 
 // Add the scope for the cart
 builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+
 
 // Add the connection to the IHttpContextAccessor so we can use the current session for each user
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
