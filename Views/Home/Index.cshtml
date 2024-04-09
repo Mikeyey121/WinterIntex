@@ -2,13 +2,18 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h1>Products</h1>
+<div class="container" style="background-color: black;">
+    <div class="row m-1 p-1">
+        <div class="col-5">
+            <h1 style="font-size: 100px; color: white;">Welcome to Aurora's LEGO Shop</h1>
+            <h4 style="font-size: 30px; color: white;">With new arrivals coming to you all summer long</h4>
+            <button type="button" style="background-color: white; color: black;">Shop Now</button>
+        </div>
+        <div class="col-7">
+            <div style="text-align: center;">
+                <img src="~/img/giphy.gif" alt="LEGO Typewriter" style="width: 600px; height: auto;">
+            </div>
+        </div>
+    </div>
+</div>
 
-@foreach (Product p in Model.Products)
-{
-    <partial name="ProductSummary" model="p" />
-}
-
-<div page-model="@Model.PaginationInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
-     page-class-normal="btn-outline-dark" page-class-selected="btn-primary"
-     page-url-categoryDescription="@Model.CurrentCategoryDescription" class="btn-group pull-right m-1"></div>
