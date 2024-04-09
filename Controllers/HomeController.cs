@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using WinterIntex.Models;
 using WinterIntex.Models.ViewModels;
@@ -15,14 +16,30 @@ namespace WinterIntex.Controllers
             _repo = temp;
         }
 
-        public IActionResult Index(int pageNum = 1, string? year = null)
+        public IActionResult Index(string? categoryDescription = null,int pageNum = 1, string? color = null)
         {
             int pageSize = 10;
 
+            IQueryable<Product> productsQuery = _repo.Products
+            .Include(p => p.CategoryProductOrders) // Include the join table
+            .ThenInclude(cpo => cpo.Category); // Include the category
+
+
+            // Filter by year if specified
+            if (!string.IsNullOrEmpty(color))
+            {
+                productsQuery = productsQuery.Where(x => x.Year.ToString() == color);
+            }
+
+            // Filter by category description if specified
+            if (!string.IsNullOrEmpty(categoryDescription))
+            {
+                productsQuery = productsQuery.Where(x => x.CategoryProductOrders.Any(cpo => cpo.Category.Category_Description == categoryDescription));
+            }
+
             var blah = new ProductsListViewModel
             {
-                Products = _repo.Products
-                .Where(x => x.Year.ToString() == year || year == null)
+                Products = productsQuery
                 .OrderBy(x => x.Name)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
@@ -30,13 +47,13 @@ namespace WinterIntex.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = year == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Year.ToString() == year).Count()
+                    TotalItems = categoryDescription == null ? _repo.Products.Count() : _repo.Products.Where(x => x.CategoryProductOrders.Any(cpo => cpo.Category.Category_Description == categoryDescription)).Count()
 
                 },
-                CurrentProjectType = year
+                CurrentCategoryDescription = categoryDescription,
+                CurrentProjectColor = color
 
             };
-
 
             return View(blah);
         }

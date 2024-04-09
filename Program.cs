@@ -41,12 +41,10 @@ builder.Services.AddHsts(options =>
     // options.ExcludedHosts.Add("example.com"); // Use this to exclude specific hosts from HSTS
 });
 
-builder.Services.AddScoped<LineItems>(sp => SessionCart.GetCart(sp));
 
 builder.Services.AddRazorPages();
 
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession();
+
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -72,8 +70,6 @@ app.UseHttpsRedirection();
 // Configure for static files we want to use
 app.UseStaticFiles();
 
-// Configure app for using session 
-app.UseSession();
 
 // Configure for routing
 app.UseRouting();
@@ -99,10 +95,12 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 
-app.MapControllerRoute("pagenumandtype", "{projectType}/Page{pageNum}", new { Controller = "Home", Action = "Index" });
+app.MapControllerRoute("pagenumandcategory", "{categoryDescription}/Page{pageNum}", new { Controller = "Home", Action = "Index" });
 app.MapControllerRoute("page", "Page/{pageNum}", new { Controller = "Home", Action = "Index", pageNum = 1 });
-app.MapControllerRoute("projectType", "{projectType}", new { Controller = "Home", Action = "Index", pageNum = 1 });
-app.MapControllerRoute("pagination", "Projects/Page{pageNum}", new { Controller = "Home", Action = "Index", pageNum = 1 });
+app.MapControllerRoute("productCategory", "{categoryDescription}", new { Controller = "Home", Action = "Index", pageNum = 1 });
+app.MapControllerRoute("pagination", "Products/Page{pageNum}", new { Controller = "Home", Action = "Index", pageNum = 1 });
+
+
 
 // Run that bad boy
 app.Run();

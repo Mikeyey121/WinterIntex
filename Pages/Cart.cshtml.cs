@@ -1,51 +1,35 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WinterIntex.Models;
-using WinterIntex.Infrastructure;
-using Microsoft.AspNetCore.Authorization;
-
-
 
 namespace WinterIntex.Pages
 {
-    [Authorize]
 
     public class CartModel : PageModel
     {
         private IProductRepository _repo;
-        public LineItems Cart { get; set; }
+        private readonly ILogger<CartModel> _logger;
 
-        public CartModel(IProductRepository temp, LineItems cartService)
+        public CartModel(IProductRepository repo, ILogger<CartModel> logger)
         {
-            _repo = temp;
-            Cart = cartService;
-
+            _repo = repo;
+            _logger = logger;
         }
-        public string ReturnUrl { get; set; } = "/";
-
-
-        public void OnGet(string returnUrl)
+        public Cart? Cart { get; set; }
+        public void OnGet()
         {
-            ReturnUrl = returnUrl ?? "/";
         }
 
-        public IActionResult OnPost(string projectId, string returnUrl)
+        public void OnPost(string Product_ID)
         {
-            Product proj = _repo.Products
-                .FirstOrDefault(x => x.Product_ID == projectId);
+            _logger.LogInformation($"The productId that came into the post is {Product_ID}");
+            Product prod = _repo.Products
+                .FirstOrDefault(x => x.Product_ID == Product_ID);
 
-            if (proj != null)
-            {
-                Cart.AddItem(proj, 1);
-            }
-            return RedirectToPage(new { returnUrl = returnUrl });
+            Cart = new Cart();
 
-        }
-
-        public IActionResult OnPostRemove(string projectId, string returnUrl)
-        {
-            Cart.RemoveLine(Cart.Lines.First(x => x.Product.Product_ID == projectId).Product);
-            return RedirectToPage(new { returnUrl = returnUrl });
+            _logger.LogInformation("The prod that was created is ", prod);
+            Cart.AddItem(prod, 1);
         }
     }
 }

@@ -4,6 +4,8 @@
     {
         public IQueryable<Product> Products { get; set; }
         public PaginationInfo PaginationInfo { get; set; } = new PaginationInfo();
-        public string? CurrentProjectType { get; set; }
+        public string? CurrentProjectColor { get; set; }
+        
+        public string? CurrentCategoryDescription { get; set; }
     }
 }

@@ -25,14 +25,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <div class="row">
-                            <li class="nav-item">
-                            <div class="col-6 navbar-text text-end">
-                                <vc:cart-summary />
-
-                            </div>
-                        </li>
-                        </div>
+                        
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -40,14 +33,17 @@
         </nav>
     </header>
 
-    <div class="row m-1 p-1">
-        <div class="col-3">
-            <vc:product-type-view-component />
-        </div>
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        <div class="row m-1 p-1">
+            <div class="col-3">
+                @await Component.InvokeAsync("ProductType")
+            </div>
+            <div class="col-9">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">

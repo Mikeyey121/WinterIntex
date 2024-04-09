@@ -32,5 +32,7 @@ namespace WinterIntex.Models
         public byte Secondary_Color { get; set; }
         [Required(ErrorMessage = "Please specify a description of the product")]
         public string Description { get; set; }
+
+        public ICollection<CategoryProductOrder> CategoryProductOrders { get; set; }
     }
 }
