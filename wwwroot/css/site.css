@@ -18,5 +18,23 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+/*    font-size: 2vw;
+*/}
+
+.bg-yellow {
+    background-color: #F2CD37 !important;
 }
+
+.bg-black {
+    background-color: #000000 !important;
+}
+
+/*body {
+    font-family: 'Jomhuria', sans-serif;
+}*/
+
+.navbar-brand {
+    font-family: 'Jomhuria', sans-serif;
+}
+

@@ -6,7 +6,7 @@ namespace WinterIntex.Models
     {
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
-        public void AddItem(Product p, int quantity)
+        public virtual void AddItem(Product p, int quantity)
         {
             CartLine? line = Lines
                 .Where(x => x.Product.Product_ID == p.Product_ID)
@@ -26,11 +26,11 @@ namespace WinterIntex.Models
             }
         }
 
-        public void RemoveLine(Product p) => Lines.RemoveAll(x => x.Product.Product_ID == p.Product_ID);
+        public virtual void RemoveLine(Product p) => Lines.RemoveAll(x => x.Product.Product_ID == p.Product_ID);
 
-        public void Clear() => Lines.Clear();
+        public virtual void Clear() => Lines.Clear();
 
-        public decimal CalculateTotal() => Lines.Sum(x => 25* x.Quantity);
+        public decimal CalculateTotal() => Lines.Sum(x => x.Product.Price * x.Quantity);
 
 
         public class CartLine
