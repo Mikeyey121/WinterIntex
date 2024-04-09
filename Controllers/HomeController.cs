@@ -16,7 +16,7 @@ namespace WinterIntex.Controllers
             _repo = temp;
         }
 
-        public IActionResult Index(string? categoryDescription = null,int pageNum = 1, string? color = null)
+        public IActionResult Products(string? categoryDescription = null,int pageNum = 1, string? color = null)
         {
             int pageSize = 10;
 
@@ -60,6 +60,14 @@ namespace WinterIntex.Controllers
 
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult About()
         {
             return View();
         }
