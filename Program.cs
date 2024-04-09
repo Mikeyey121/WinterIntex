@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -28,8 +29,20 @@ builder.Services.AddDbContext<WinterIntexContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+// Add identity services
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    // Requirements for secure password
+    options.Password.RequiredLength = 20; // At least 20 characters
+    options.Password.RequireUppercase = true; // At least 1 uppercase letter
+    options.Password.RequireLowercase = true; // At least 1 lowercase letter
+    options.Password.RequireDigit = true; // At least 1 digit
+    options.Password.RequireNonAlphanumeric = true; // At least 1 special character
+    options.Password.RequiredUniqueChars = 6; // At least 6 unique characters
+    options.SignIn.RequireConfirmedAccount = true;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews();
 
 // Configure HSTS options
@@ -41,10 +54,7 @@ builder.Services.AddHsts(options =>
     // options.ExcludedHosts.Add("example.com"); // Use this to exclude specific hosts from HSTS
 });
 
-
 builder.Services.AddRazorPages();
-
-
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
