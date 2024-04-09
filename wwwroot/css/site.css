@@ -19,8 +19,8 @@ html {
 
 body {
     margin-bottom: 60px;
-    font-size: 2vw;
-}
+/*    font-size: 2vw;
+*/}
 
 .bg-yellow {
     background-color: #F2CD37 !important;
@@ -30,9 +30,9 @@ body {
     background-color: #000000 !important;
 }
 
-body {
+/*body {
     font-family: 'Jomhuria', sans-serif;
-}
+}*/
 
 .navbar-brand {
     font-family: 'Jomhuria', sans-serif;
