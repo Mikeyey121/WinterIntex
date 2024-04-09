@@ -1,22 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WinterIntex.Models;
+using WinterIntex.Models.ViewModels;
+
 
 namespace WinterIntex.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IProductRepository _repo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductRepository temp)
         {
-            _logger = logger;
+            _repo = temp;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int pageNum = 1, string? year = null)
         {
-            return View();
+            int pageSize = 10;
+
+            var blah = new ProductsListViewModel
+            {
+                Products = _repo.Products
+                .Where(x => x.Year.ToString() == year || year == null)
+                .OrderBy(x => x.Name)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = year == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Year.ToString() == year).Count()
+
+                },
+                CurrentProjectType = year
+
+            };
+
+
+            return View(blah);
         }
+
 
         public IActionResult Privacy()
         {
