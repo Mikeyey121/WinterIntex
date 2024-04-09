@@ -42,18 +42,11 @@
         </nav>
     </header>
 
-    <div class="container">
-        <div class="row m-1 p-1">
-            <div class="col-3">
-                @await Component.InvokeAsync("ProductType")
-            </div>
-            <div class="col-9">
+   
                 <main role="main" class="pb-3">
                     @RenderBody()
                 </main>
-            </div>
-        </div>
-    </div>
+            
 
 
     @RenderBody()
