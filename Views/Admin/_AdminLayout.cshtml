@@ -1,0 +1,22 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="bg-info text-white p-2">
+    <span class="navbar-brand ml-2">LEGO Store Administration</span>
+</div>
+<div class="container-fluid">
+    <div class="row p-2">
+        <div class="col-3">
+            <div class="d-grid gap-1">
+                <a asp-area="" asp-controller="Admin" asp-action="Products" class="btn btn-outline-primary"
+                   ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">Products</a>
+                <a asp-area="" asp-controller="Admin" asp-action="Orders" class="btn btn-outline-primary"
+                   ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">Orders</a>
+                <a asp-area="" asp-controller="Admin" asp-action="Users" class="btn btn-outline-primary"
+                   ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">Users</a>
+            </div>
+        </div>
+        <div class="col">
+            @RenderBody()
+        </div>
+    </div>
+</div>
