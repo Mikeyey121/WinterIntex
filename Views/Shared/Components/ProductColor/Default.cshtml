@@ -8,11 +8,11 @@
 
 
 <form method="get" asp-controller="Home" asp-action="Products">
-    <select name="categoryDescription" onchange="this.form.submit()" class="form-select">
-        <option value="">Select a Category</option>
+    <select name="color" onchange="this.form.submit()" class="form-select">
+        <option value="">Select a Color</option>
         @foreach (string pt in Model ?? Enumerable.Empty<string>())
         {
-            @if (ViewBag.SelectedCategory == pt)
+            @if (ViewBag.SelectedColor == pt)
             {
                 <option value="@pt" selected="selected">@pt</option>
             }
@@ -24,5 +24,3 @@
     </select>
     <input type="hidden" name="pageNum" value="1" />
 </form>
-
-

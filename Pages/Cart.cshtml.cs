@@ -9,7 +9,7 @@ namespace WinterIntex.Pages
     public class CartModel : PageModel
     {
         private IProductRepository _repo;
-
+       
         public CartModel(IProductRepository repo, Cart cartService)
         {
             _repo = repo;
