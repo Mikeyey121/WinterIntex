@@ -7,62 +7,139 @@
 
 <h2>Check out now</h2>
 <p>Please enter your details, and we'll ship your goods right away!</p>
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var modelStateKey in ViewData.ModelState.Keys)
+            {
+                @foreach (var error in ViewData.ModelState[modelStateKey].Errors)
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            }
+        </ul>
+    </div>
+}
 
 <form asp-action="Checkout" method="post">
     <h3>Order Details:</h3>
     <div class="form-group">
         <label>Transaction ID:</label>
         <input asp-for="transaction_ID" class="form-control" />
+        <span asp-validation-for="transaction_ID" class="text-danger"></span>
+
     </div>
     <div class="form-group">
         <label>Customer ID:</label>
         <input asp-for="customer_ID" class="form-control" />
+        <span asp-validation-for="customer_ID" class="text-danger"></span>
+
     </div>
     <div class="form-group">
         <label>Date:</label>
         <input asp-for="Date" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+
     </div>
     <div class="form-group">
         <label>Day of the week (0-6):</label>
         <input asp-for="Day_Of_Week" class="form-control" />
+        <span asp-validation-for="Day_Of_Week" class="text-danger"></span>
+
     </div>
     <div class="form-group">
         <label>Time (0-23):</label>
         <input asp-for="Time" class="form-control" />
+        <span asp-validation-for="Time" class="text-danger"></span>
+
     </div>
     <div class="form-group">
-        <label>Entry Mode (0-2):</label>
-        <input asp-for="Entry_Mode" class="form-control" />
+        <label for="Entry_Mode">Entry Mode (0-2):</label>
+        <select asp-for="Entry_Mode" class="form-control" id="Entry_Mode">
+            <option value="">Select an Entry Mode</option>
+            @foreach (var entryMethod in ViewBag.EntryMethods)
+            {
+                <option value="@entryMethod.Entry_Code">@entryMethod.Entry_Description</option>
+            }
+        </select>
+        <span asp-validation-for="Entry_Mode" class="text-danger"></span>
+
     </div>
+
     <div class="form-group">
         <label>Amount:</label>
         <input asp-for="Amount" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+
     </div>
+   
+    <input type="hidden" value="2" asp-for="Type_Of_Transaction" class="form-control" />
+    <span asp-validation-for="Type_Of_Transaction" class="text-danger"></span>
+@* 
+    <input type="hidden" value="ViewBag.Prediction" asp-for="Fraud" class="form-control" />
+    <span asp-validation-for="Fraud" class="text-danger"></span>
+ *@
+
     <div class="form-group">
-        <label>Type of Transaction (0-2):</label>
-        <input asp-for="Type_Of_Transaction" class="form-control" />
+        <label for="Country_Of_Transaction">Country of Order:</label>
+        <select asp-for="Country_Of_Transaction" class="form-control" id="Country_Of_Transaction">
+            <option value="">Select the Country of Order</option>
+            @foreach (var entryMethod in ViewBag.Countries)
+            {
+                <option value="@entryMethod.Country_code">@entryMethod.Country_Name</option>
+            }
+        </select>
+        <span asp-validation-for="Country_Of_Transaction" class="text-danger"></span>
+
     </div>
+
     <div class="form-group">
-        <label>Country of Transaction (0-5):</label>
-        <input asp-for="Country_Of_Transaction" class="form-control" />
+        <label for="Shipping_Address">Country to Ship:</label>
+        <select asp-for="Shipping_Address" class="form-control" id="Shipping_Address">
+            <option value="">Select a Country for Shipping</option>
+            @foreach (var entryMethod in ViewBag.Countries)
+            {
+                <option value="@entryMethod.Country_code">@entryMethod.Country_Name</option>
+            }
+        </select>
+        <span asp-validation-for="Shipping_Address" class="text-danger"></span>
+
     </div>
+
     <div class="form-group">
-        <label>Shipping Address (0-5):</label>
-        <input asp-for="Shipping_Address" class="form-control" />
+        <label for="Bank">Supported Banks:</label>
+        <select asp-for="Bank" class="form-control" id="Bank">
+            <option value="">Select a Bank</option>
+            @foreach (var entryMethod in ViewBag.Banks)
+            {
+                <option value="@entryMethod.Bank_Code">@entryMethod.Bank_Name</option>
+            }
+        </select>
+        <span asp-validation-for="Bank" class="text-danger"></span>
+
     </div>
+
     <div class="form-group">
-        <label>Bank (0-6):</label>
-        <input asp-for="Type_Of_Transaction" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Type of Card (0-1):</label>
-        <input asp-for="Type_Of_Card" class="form-control" />
+        <label for="Type_Of_Card">Supported Cards:</label>
+        <select asp-for="Type_Of_Card" class="form-control" id="Type_Of_Card">
+            <option value="">Select a Card</option>
+            @foreach (var entryMethod in ViewBag.CardTypes)
+            {
+                <option value="@entryMethod.Card_Code">@entryMethod.Card_Description</option>
+            }
+        </select>
+        <span asp-validation-for="Type_Of_Card" class="text-danger"></span>
+
     </div>
 
 
 
+
+    <br />
     <div class="text-center">
         <input class="btn btn-primary" type="submit"
                value="Complete Order" />
     </div>
+
 </form>

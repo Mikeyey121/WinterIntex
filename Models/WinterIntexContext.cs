@@ -10,6 +10,11 @@ namespace WinterIntex.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<ItemRecommendations> ItemRecommendations { get; set; }
         public DbSet<Order> Order => Set<Order>();
+        public DbSet<EntryMethods> EntryMethods { get; set; }
+        public DbSet<TransactionTypes> TransactionTypes { get; set; }
+        public DbSet<Country> Country { get; set; }
+        public DbSet<Bank> Banks { get; set; }
+        public DbSet<CardTypes> CardTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
