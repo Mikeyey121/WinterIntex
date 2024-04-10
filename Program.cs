@@ -60,9 +60,12 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+//Blazor Services
+builder.Services.AddServerSideBlazor();
+
 // Configuration for client size razor pages
 
-    builder.Services.AddControllersWithViews()
+builder.Services.AddControllersWithViews()
         .AddRazorRuntimeCompilation();
 
 
@@ -140,7 +143,9 @@ app.MapControllerRoute("color", "{color}", new { Controller = "Home", Action = "
 app.MapControllerRoute("productCategory", "{categoryDescription}", new { Controller = "Home", Action = "Index", pageNum = 1 });
 app.MapControllerRoute("pagination", "Products/Page{pageNum}", new { Controller = "Home", Action = "Index", pageNum = 1 });
 
-
+//Register blazor middleware components
+app.MapBlazorHub();
+app.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
 
 // Run that bad boy
 app.Run();
