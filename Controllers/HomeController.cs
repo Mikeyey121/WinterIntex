@@ -106,7 +106,7 @@ namespace WinterIntex.Controllers
 
         public IActionResult ReviewUsers()
         {
-            return View();
+            return Redirect("/admin/users");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
