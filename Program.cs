@@ -19,6 +19,7 @@ builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 });
 
 builder.Services.AddScoped<IProductRepository, EFProductRepository>();
+builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 
 
 // Connection for sql server database 
@@ -60,7 +61,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 // Configuration for client size razor pages
-builder.Services.AddRazorPages();
+
+    builder.Services.AddControllersWithViews()
+        .AddRazorRuntimeCompilation();
+
+
 
 // Memory Cache and Session configuration for session
 builder.Services.AddDistributedMemoryCache();
@@ -97,13 +102,18 @@ app.UseHttpsRedirection();
 // Configure for static files we want to use
 app.UseStaticFiles();
 
+// Add CSP header middleware
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; connect-src 'self' http://localhost:* ws://localhost:*; img-src 'self' data:; " +
+        "script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com");
+    await next();
+});
+
 app.UseSession();
 
 // Configure for routing
 app.UseRouting();
-
-
-
 
 // Configure for HSTS
 if (!app.Environment.IsDevelopment())
@@ -122,9 +132,11 @@ app.MapControllerRoute(
 // Configure for razor pages
 app.MapRazorPages();
 
-
+app.MapControllerRoute("pagenumandcolor", "{color}/Page{pageNum}", new { Controller = "Home", Action = "Index" });
 app.MapControllerRoute("pagenumandcategory", "{categoryDescription}/Page{pageNum}", new { Controller = "Home", Action = "Index" });
+
 app.MapControllerRoute("page", "Page/{pageNum}", new { Controller = "Home", Action = "Index", pageNum = 1 });
+app.MapControllerRoute("color", "{color}", new { Controller = "Home", Action = "Index", pageNum = 1 });
 app.MapControllerRoute("productCategory", "{categoryDescription}", new { Controller = "Home", Action = "Index", pageNum = 1 });
 app.MapControllerRoute("pagination", "Products/Page{pageNum}", new { Controller = "Home", Action = "Index", pageNum = 1 });
 

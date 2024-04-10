@@ -25,18 +25,34 @@ namespace WinterIntex.Controllers
             .Include(p => p.CategoryProductOrders) // Include the join table
             .ThenInclude(cpo => cpo.Category); // Include the category
 
+            int TotalItem = _repo.Products.Count();
 
-            // Filter by year if specified
+            // Filter by color if specified
             if (!string.IsNullOrEmpty(color))
             {
-                productsQuery = productsQuery.Where(x => x.Year.ToString() == color);
+                productsQuery = productsQuery.Where(x =>
+                    (x.PrimaryColor != null && x.PrimaryColor.Color_Description == color) ||
+                    (x.SecondaryColor != null && x.SecondaryColor.Color_Description == color)
+);
+                TotalItem = color == null ? _repo.Products.Count() :
+                        _repo.Products.Where(x =>
+                            (x.PrimaryColor != null && x.PrimaryColor.Color_Description == color) ||
+                            (x.SecondaryColor != null && x.SecondaryColor.Color_Description == color)
+                        ).Count();
+
+
             }
+
 
             // Filter by category description if specified
             if (!string.IsNullOrEmpty(categoryDescription))
             {
                 productsQuery = productsQuery.Where(x => x.CategoryProductOrders.Any(cpo => cpo.Category.Category_Description == categoryDescription));
-            }
+                TotalItem = categoryDescription == null ? _repo.Products.Count() : _repo.Products.Where(x => x.CategoryProductOrders.Any(cpo => cpo.Category.Category_Description == categoryDescription)).Count();
+
+            };
+
+
 
             var blah = new ProductsListViewModel
             {
@@ -48,9 +64,8 @@ namespace WinterIntex.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = categoryDescription == null ? _repo.Products.Count() : _repo.Products.Where(x => x.CategoryProductOrders.Any(cpo => cpo.Category.Category_Description == categoryDescription)).Count()
-
-                },
+                    TotalItems = TotalItem
+                    },
                 CurrentCategoryDescription = categoryDescription,
                 CurrentProjectColor = color
 

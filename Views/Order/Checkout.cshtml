@@ -1,0 +1,68 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Order
+
+<h2>Check out now</h2>
+<p>Please enter your details, and we'll ship your goods right away!</p>
+
+<form asp-action="Checkout" method="post">
+    <h3>Order Details:</h3>
+    <div class="form-group">
+        <label>Transaction ID:</label>
+        <input asp-for="transaction_ID" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Customer ID:</label>
+        <input asp-for="customer_ID" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Date:</label>
+        <input asp-for="Date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Day of the week (0-6):</label>
+        <input asp-for="Day_Of_Week" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Time (0-23):</label>
+        <input asp-for="Time" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Entry Mode (0-2):</label>
+        <input asp-for="Entry_Mode" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Amount:</label>
+        <input asp-for="Amount" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Type of Transaction (0-2):</label>
+        <input asp-for="Type_Of_Transaction" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Country of Transaction (0-5):</label>
+        <input asp-for="Country_Of_Transaction" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Shipping Address (0-5):</label>
+        <input asp-for="Shipping_Address" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Bank (0-6):</label>
+        <input asp-for="Type_Of_Transaction" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Type of Card (0-1):</label>
+        <input asp-for="Type_Of_Card" class="form-control" />
+    </div>
+
+
+
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit"
+               value="Complete Order" />
+    </div>
+</form>
