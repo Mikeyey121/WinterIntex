@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
 using WinterIntex.Models;
+using System.Linq;
 
 namespace WinterIntex.Controllers
 {
@@ -15,9 +17,18 @@ namespace WinterIntex.Controllers
         }
         public IActionResult Products()
         {
-            Product = _context.Products
-                .OrderBy(x => x.Name).ToList();
-            return View(Product);
+            var selectedCategory = RouteData?.Values["categoryDescription"];
+
+            ViewBag.SelectedCategory = selectedCategory;
+
+            // Query products including related categories
+            var products = _context.Products
+                .Include(p => p.CategoryProductOrders)
+                    .ThenInclude(cpo => cpo.Category)
+                .OrderBy(p => p.Name)
+                .ToList();
+
+            return View(products);
         }
         public IActionResult Orders()
         {
