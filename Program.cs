@@ -73,9 +73,12 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+//Blazor Services
+builder.Services.AddServerSideBlazor();
+
 // Configuration for client size razor pages
 
-    builder.Services.AddControllersWithViews()
+builder.Services.AddControllersWithViews()
         .AddRazorRuntimeCompilation();
 
 

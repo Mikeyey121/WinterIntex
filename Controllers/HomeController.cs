@@ -94,21 +94,6 @@ namespace WinterIntex.Controllers
             return View();
         }
 
-        public IActionResult ReviewOrders()
-        {
-            return View();
-        }
-
-        public IActionResult ReviewProducts()
-        {
-            return View();
-        }
-
-        public IActionResult ReviewUsers()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
