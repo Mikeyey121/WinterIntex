@@ -11,17 +11,25 @@
         <span class="badge rounded-pill bg-primary text-white float-end"><small>$@Model.Price.00</small></span>
     </h4>
     <ul>
-        <li>ID: @Model.Product_ID</li>
-        <li>Description: @Model.Description</li>
         <li class="card" style="width: 18rem;">
             <img src="@Model.img_Link" class="card-img-top" alt="Image for @Model.Name">
         </li>
         
     </ul>
-
+    
+    @* This is the button for adding to a cart
+ *@
     <form id="@Model.Product_ID" method="post" asp-page="/Cart">
     <input type="hidden" asp-for="Product_ID" value="@Model.Product_ID"/>
     <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
     <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart</button>
+    </form>
+
+    @* This is the button for viewing product details
+ *@
+    <form id="@Model.Product_ID" method="get" asp-page="/ProductDetails">
+        <input type="hidden" asp-for="Product_ID" value="@Model.Product_ID" />
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <button type="submit" class="btn-outline-success btn-sm float-end">View Details</button>
     </form>
 </div>

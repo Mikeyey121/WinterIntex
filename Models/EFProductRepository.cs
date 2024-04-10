@@ -13,6 +13,7 @@
 
         // Setting an IQueryable of type product
         public IQueryable<Product> Products => _context.Products;
+        public IQueryable<ItemRecommendations> ItemRecommendations => _context.ItemRecommendations;
 
         // Method to create a product
         public void CreateProduct(Product p)

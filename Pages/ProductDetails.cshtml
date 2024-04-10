@@ -1,0 +1,47 @@
+﻿@page
+@model WinterIntex.Pages.ProductDetailsModel
+@{
+}
+<div class="text-center">
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
+</div>
+
+<h4>@Model.CoolProduct.Name</h4>
+
+<ul>
+<li>@Model.CoolProduct.Year</li>
+<li>@Model.CoolProduct.num_parts</li>
+<li><img class="card" style="width: 18rem;" src="@Model.CoolProduct.img_Link" alt="Image for @Model.CoolProduct.Name" /></li>
+<li>@Model.CoolProduct.Description</li>
+</ul>
+<h3>Products you may also like:</h3>
+<div class="row">
+    <div class="col-4">
+        <h5>@Model.RecProduct1.Name</h5>
+        <form id="@Model.RecProduct1.Product_ID" method="get" asp-page="/ProductDetails">
+            <input type="hidden" asp-for="Product_ID" value="@Model.RecProduct1.Product_ID" />
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <button type="submit" class="btn-outline-success btn-sm float-end">View Details</button>
+        </form>
+        <img class="card" style="width: 18rem;" src="@Model.RecProduct1.img_Link" alt="@Model.RecProduct1.Name recommendation for @Model.CoolProduct.Name " />
+    </div>
+    <div class="col-4">
+        <h5>@Model.RecProduct2.Name</h5>
+        <form id="@Model.RecProduct2.Product_ID" method="get" asp-page="/ProductDetails">
+            <input type="hidden" asp-for="Product_ID" value="@Model.RecProduct2.Product_ID" />
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <button type="submit" class="btn-outline-success btn-sm float-end">View Details</button>
+        </form>
+        <img class="card" style="width: 18rem;" src="@Model.RecProduct2.img_Link" alt="@Model.RecProduct2.Name recommendation for @Model.CoolProduct.Name " />
+    </div>
+    <div class="col-4">
+        <h5>@Model.RecProduct3.Name</h5>
+        <form id="@Model.RecProduct3.Product_ID" method="get" asp-page="/ProductDetails">
+            <input type="hidden" asp-for="Product_ID" value="@Model.RecProduct3.Product_ID" />
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <button type="submit" class="btn-outline-success btn-sm float-end">View Details</button>
+        </form>
+        <img class="card" style="width: 18rem;" src="@Model.RecProduct3.img_Link" alt="@Model.RecProduct3.Name recommendation for @Model.CoolProduct.Name " />
+    </div>
+</div>
+
