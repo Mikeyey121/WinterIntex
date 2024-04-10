@@ -16,6 +16,7 @@ namespace WinterIntex.Components
 
         public IViewComponentResult Invoke()
         {
+
             var selectedColor = RouteData?.Values["color"];
 
             ViewBag.SelectedColor = selectedColor;

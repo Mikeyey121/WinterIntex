@@ -20,9 +20,9 @@
     @* This is the button for adding to a cart
  *@
     <form id="@Model.Product_ID" method="post" asp-page="/Cart">
-    <input type="hidden" asp-for="Product_ID" value="@Model.Product_ID"/>
-    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-    <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart</button>
+        <input type="hidden" asp-for="Product_ID" value="@Model.Product_ID"/>
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart</button>
     </form>
 
     @* This is the button for viewing product details
