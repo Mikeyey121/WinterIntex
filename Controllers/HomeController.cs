@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -68,6 +69,27 @@ namespace WinterIntex.Controllers
             return View();
         }
         public IActionResult About()
+        {
+            return View();
+        }
+
+        //[Authorize]
+        public IActionResult Admin()
+        {
+            return View();
+        }
+
+        public IActionResult ReviewOrders()
+        {
+            return View();
+        }
+
+        public IActionResult ReviewProducts()
+        {
+            return View();
+        }
+
+        public IActionResult ReviewUsers()
         {
             return View();
         }

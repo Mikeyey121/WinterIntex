@@ -1,20 +1,99 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Legos</title>
-    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WinterIntex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WinterIntex.styles.css" asp-append-version="true" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="bg-dark text-white p-2">
-        <span class="navbar-brand m-lg-2">Legos</span>
-    </div>
-    <div class="m-1 p-1">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-yellow border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/lego-logo-brick-1.png" alt="LEGO Logo" style="width: 40px; height: auto;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Products">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                    </ul>
+                    <div class="col-6 navbar-text text-end">
+                        <vc:cart-summary />
+                    </div>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main role="main" class="pb-3">
         @RenderBody()
-    </div>
+    </main>
+
+
+
+    @RenderBody()
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - Aurora's LEGO Shop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> - <a asp-area="" asp-controller="Home" asp-action="Admin">Admin</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        // Check if the user has provided consent
+        var hasConsent = localStorage.getItem('cookieConsent');
+        if (!hasConsent) {
+            // Display the cookie consent notification
+            showCookieConsent();
+        }
+
+        function showCookieConsent() {
+            var consentDiv = document.createElement('div');
+            consentDiv.id = 'cookieConsent';
+            consentDiv.innerHTML = `
+                            <div class="cookie-notification">
+                                This website uses cookies to ensure you get the best experience on our website.
+                                <button onclick="acceptCookies()">Accept</button>
+                            </div>`;
+
+            // Get a reference to the first child node of the body
+            var firstChild = document.body.firstChild;
+
+
+            // Insert the consentDiv before the firstChild
+            document.body.insertBefore(consentDiv, firstChild);
+        }
+
+        function acceptCookies() {
+            // Set the consent flag in localStorage
+            localStorage.setItem('cookieConsent', 'true');
+            // Hide the cookie consent notification
+            document.getElementById('cookieConsent').style.display = 'none';
+        }
+    </script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
