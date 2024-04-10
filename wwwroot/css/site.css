@@ -34,7 +34,19 @@ body {
     font-family: 'Jomhuria', sans-serif;
 }*/
 
-.navbar-brand {
+/*nav {
     font-family: 'Jomhuria', sans-serif;
+    font-size: 2.5vw;
+}*/
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Saira Condensed';
+    src: url('~/fonts/SairaCondensed-Regular.ttf') format('truetype');
+}
+
+nav {
+    font-family: 'Saira Condensed';
+    src: url('~/fonts/SairaCondensed-Regular.ttf') format('truetype');
+    font-size: 1.5vw;
 }
 
