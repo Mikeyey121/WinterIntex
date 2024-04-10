@@ -102,13 +102,18 @@ app.UseHttpsRedirection();
 // Configure for static files we want to use
 app.UseStaticFiles();
 
+// Add CSP header middleware
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; connect-src 'self' http://localhost:* ws://localhost:*; img-src 'self' data:; " +
+        "script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com");
+    await next();
+});
+
 app.UseSession();
 
 // Configure for routing
 app.UseRouting();
-
-
-
 
 // Configure for HSTS
 if (!app.Environment.IsDevelopment())
