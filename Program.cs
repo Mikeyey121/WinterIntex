@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using WinterIntex.Data;
 using WinterIntex.Models;
@@ -8,8 +9,20 @@ using WinterIntex.Models;
 // Create builder variable
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+// Retrieve the password from user secrets
+var dbPassword = builder.Configuration["DbPassword"]
+    ?? throw new InvalidOperationException("DbPassword not found in user secrets.");
+
+// Retrieve the UserID from user secrets
+var dbUserId = builder.Configuration["DbUserId"]
+    ?? throw new InvalidOperationException("DbUserId not found in user secrets.");
+
+// Construct the connection string
+var conStrBuilder = new SqlConnectionStringBuilder(
+    builder.Configuration.GetConnectionString("DefaultConnection"));
+conStrBuilder.UserID = dbUserId;
+conStrBuilder.Password = dbPassword;
+var connectionString = conStrBuilder.ConnectionString;
 
 // Adding configuration for Google login
 builder.Services.AddAuthentication().AddGoogle(googleOptions =>
@@ -108,8 +121,10 @@ app.UseStaticFiles();
 // Add CSP header middleware
 app.Use(async (context, next) =>
 {
-    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; connect-src 'self' http://localhost:* ws://localhost:*; img-src 'self' data:; " +
-        "script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com");
+    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; connect-src 'self' http://localhost:* ws://localhost:*; " +
+        "img-src 'self' https://m.media-amazon.com/images/ https://www.lego.com/cdn/ https://images.brickset.com/sets/ https://www.brickeconomy.com/resources/images/sets/ data:; " +
+        "script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com");
+
     await next();
 });
 
@@ -142,10 +157,6 @@ app.MapControllerRoute("page", "Page/{pageNum}", new { Controller = "Home", Acti
 app.MapControllerRoute("color", "{color}", new { Controller = "Home", Action = "Index", pageNum = 1 });
 app.MapControllerRoute("productCategory", "{categoryDescription}", new { Controller = "Home", Action = "Index", pageNum = 1 });
 app.MapControllerRoute("pagination", "Products/Page{pageNum}", new { Controller = "Home", Action = "Index", pageNum = 1 });
-
-//Register blazor middleware components
-app.MapBlazorHub();
-app.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
 
 // Run that bad boy
 app.Run();
