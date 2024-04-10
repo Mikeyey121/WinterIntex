@@ -2,8 +2,8 @@
 @model WinterIntex.Pages.ProductDetailsModel
 @{
 }
-<div class="text-center">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
+<div class="text-left">
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Back</a>
 </div>
 
 <h4>@Model.CoolProduct.Name</h4>
@@ -14,6 +14,15 @@
 <li><img class="card" style="width: 18rem;" src="@Model.CoolProduct.img_Link" alt="Image for @Model.CoolProduct.Name" /></li>
 <li>@Model.CoolProduct.Description</li>
 </ul>
+
+@* Add to Cart
+ *@
+<form id="@Model.CoolProduct.Product_ID" method="post" asp-page="/Cart">
+    <input type="hidden" asp-for="Product_ID" value="@Model.CoolProduct.Product_ID" />
+    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+    <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart</button>
+</form>
+
 <h3>Products you may also like:</h3>
 <div class="row">
     <div class="col-4">
