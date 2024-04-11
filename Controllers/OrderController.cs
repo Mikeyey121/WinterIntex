@@ -2,10 +2,10 @@
 using WinterIntex.Models;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
-using WinterIntex.Pages.Admin;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace WinterIntex.Controllers
 {
@@ -90,7 +90,9 @@ namespace WinterIntex.Controllers
                 int currentMonth = DateTime.Now.Month;
                 int currentDay = DateTime.Now.Day;
                 _logger.LogInformation($"Order customer id being passed in {order.customer_ID}");
-                Customer = _repo.Customer.FirstOrDefault(x => x.customer_ID == "2");
+                string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                Customer = _repo.Customer.FirstOrDefault(x => x.customer_ID == userId);
                 _logger.LogInformation($"This is the customer first name {Customer.first_name}");
                 var input = new List<float> { (float)order.transaction_ID, (float)order.Day_Of_Week, (float)order.Time, (float)order.Entry_Mode, (float)order.Amount, (float)order.Type_Of_Transaction, (float)order.Country_Of_Transaction, (float)order.Shipping_Address, (float)order.Bank, (float)order.Type_Of_Card, Customer.country_of_residence, (float)Customer.Gender, (float)Customer.Age, currentYear, currentMonth, currentDay, Customer.birth_date.Year, Customer.birth_date.Month, Customer.birth_date.Day };
                 var inputTensor = new DenseTensor<float>(input.ToArray(), new[] { 1, input.Count });

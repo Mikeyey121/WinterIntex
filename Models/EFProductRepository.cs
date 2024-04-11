@@ -16,6 +16,8 @@
         public IQueryable<ItemRecommendations> ItemRecommendations => _context.ItemRecommendations;
 
         public IQueryable<UserRecommendations> UserRecommendations => _context.UserRecommendations;
+        public IQueryable<TopRecommendations> TopRecommendations => _context.TopRecommendations;
+
 
         // Method to create a product
         public void CreateProduct(Product p)

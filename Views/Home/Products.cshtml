@@ -8,6 +8,33 @@
     <br />
 </div>
 
+<!-- Page size filters -->
+<div class="row">
+    <form method="get" asp-controller="Home" asp-action="Products">
+         <input type="hidden" name="pageSizes" value="5" />
+        <input type="hidden" name="pageNum" value="1" />
+        <input type="hidden" name="color" value="@Context.Request.Query["color"]" />
+        <input type="hidden" name="categoryDescription" value="@Context.Request.Query["categoryDescription"]" />
+        <button class="btn @("5" == Context.Request.Query["pageSizes"] ? "btn-primary": "btn-outline-secondary")" type="submit">
+            5
+        </button>
+    </form>
+    <form method="get" asp-controller="Home" asp-action="Products">
+        <input type="hidden" name="pageSizes" value="10" />
+        <input type="hidden" name="pageNum" value="1" />
+        <input type="hidden" name="color" value="@Context.Request.Query["color"]" />
+        <input type="hidden" name="categoryDescription" value="@Context.Request.Query["categoryDescription"]" />
+        <button class="btn @("10" == Context.Request.Query["pageSizes"] ? "btn-primary": "btn-outline-secondary")" type="submit">10</button>
+    </form>
+    <form method="get" asp-controller="Home" asp-action="Products">
+        <input type="hidden" name="pageSizes" value="20" />
+        <input type="hidden" name="pageNum" value="1" />
+        <input type="hidden" name="color" value="@Context.Request.Query["color"]" />
+        <input type="hidden" name="categoryDescription" value="@Context.Request.Query["categoryDescription"]" />
+
+        <button class="btn @("20" == Context.Request.Query["pageSizes"] ? "btn-primary": "btn-outline-secondary")" type="submit">20</button>
+    </form>
+</div>
 <div class="container">
     <div class="row m-1 p-1">
 
@@ -31,6 +58,7 @@
             </div>
         </div>
 
+       
         <!-- Product Cards -->
         <div class="col-lg-9">
             <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -47,7 +75,10 @@
             <!-- Pagination -->
             <div page-model="@Model.PaginationInfo" page-action="Products" page-classes-enabled="true" page-class="btn"
                  page-class-normal="btn-outline-dark" page-class-selected="btn-primary"
-                 page-url-categoryDescription="@Model.CurrentCategoryDescription" class="btn-group pull-right m-1"></div>
+                 page-url-categoryDescription="@Context.Request.Query["categoryDescription"]" 
+                 page-url-color="@Context.Request.Query["color"]" 
+                 page-url-pageSizes="@Context.Request.Query["pageSizes"]" 
+                 class="btn-group pull-right m-1"></div>
         </div>
     </div>
 </div>

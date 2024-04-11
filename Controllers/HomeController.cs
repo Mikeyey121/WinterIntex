@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Drawing;
+using System.Security.Claims;
 using WinterIntex.Models;
 using WinterIntex.Models.ViewModels;
 
@@ -21,10 +23,10 @@ namespace WinterIntex.Controllers
         {
             _repo = temp;
         }
-
-        public IActionResult Products(string? categoryDescription = null,int pageNum = 1, string? color = null)
+        
+        public IActionResult Products(int pageSizes = 10, int pageNum = 1, string? color = null, string? categoryDescription = null)
         {
-            int pageSize = 10;
+            int pageSize = pageSizes;
 
             IQueryable<Product> productsQuery = _repo.Products
             .Include(p => p.CategoryProductOrders) // Include the join table
@@ -84,21 +86,48 @@ namespace WinterIntex.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            string example = "";
-            // Fetch the user's recommendations using the customer ID
-            var userRecommendations = _repo.UserRecommendations.FirstOrDefaultAsync(x => x.customer_ID == customer_ID);
-            
-            if (userRecommendations != null)
+            var viewModel = new UserRecommendationsViewModel
             {
-                // Fetch each recommended product details from the database
-                UserRec1 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_1);
-                UserRec2 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_2);
-                UserRec3 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_3);
+                IsAuthenticated = User.Identity.IsAuthenticated
             };
-            
-            return View();
+
+
+            if (viewModel.IsAuthenticated)
+            {
+                // Mhutch customer id 218756d3-239e-46e6-a9f7-8b0c4c72fc2b is on row 13198
+                string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                viewModel.UserRecommendations = _repo.UserRecommendations.FirstOrDefault(x => x.customer_ID == userId);
+
+                var recommendation1Id = viewModel.UserRecommendations.Recommendation_1;
+                var product1 = _repo.Products.FirstOrDefault(x => x.Product_ID == recommendation1Id);
+
+
+                viewModel.RecommendedProducts.Add(product1);
+                viewModel.RecommendedProducts.Add(_repo.Products.FirstOrDefault(x => x.Product_ID == viewModel.UserRecommendations.Recommendation_2));
+                viewModel.RecommendedProducts.Add(_repo.Products.FirstOrDefault(x => x.Product_ID == viewModel.UserRecommendations.Recommendation_3));
+                viewModel.RecommendedProducts.Add(_repo.Products.FirstOrDefault(x => x.Product_ID == viewModel.UserRecommendations.Recommendation_4));
+                viewModel.RecommendedProducts.Add(_repo.Products.FirstOrDefault(x => x.Product_ID == viewModel.UserRecommendations.Recommendation_5));
+
+
+            }
+            else
+            {
+
+
+                foreach (var r in _repo.TopRecommendations)
+                {
+                    viewModel.TopRecommendations.Add(new TopRecommendations { Product_ID = r.Product_ID, Average_Rating = r.Average_Rating });
+                    viewModel.RecommendedProducts.Add(_repo.Products.FirstOrDefault(x => x.Product_ID == r.Product_ID));
+
+                }
+
+            }
+            return View(viewModel);
+
+
+
         }
         public IActionResult About()
         {

@@ -1,4 +1,5 @@
-﻿@model WinterIntex.Models.UserRecommendations
+﻿@model WinterIntex.Models.ViewModels.UserRecommendationsViewModel
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -23,11 +24,39 @@
             </div>
         </div>
         <h3>Aurora's recommendations for you:</h3>
-        @foreach (var recProduct in new[] { Model.Recommendation_1, Model.Recommendation_2, Model.Recommendation_3 })
+        
+    </div>
+</div>
+<br />
+
+<!-- Recommendations div -->
+<div class="text-center">
+    @if (User.Identity.IsAuthenticated)
+    {
+        @foreach (var recProduct in Model.RecommendedProducts)
         {
             <div class="col-md-4 mb-3">
                 <div class="card">
-                    <img src="@recProduct." class="card-img-top" alt="@recProduct.Name recommendation for @Model.CoolProduct.Name">
+                    <img src="@recProduct.img_Link" class="card-img-top" alt="@recProduct.Name recommendation for the logged in user">
+                    <div class="card-body">
+                        <h5 class="card-title">@recProduct.Name</h5>
+                        <form id="@recProduct.Product_ID" method="get" asp-page="/ProductDetails">
+                             <input type="hidden" asp-for="Product_ID" value="@recProduct.Product_ID" />
+                             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                            <button type="submit" class="btn btn-outline-success btn-sm">View Details</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        @foreach (var recProduct in Model.RecommendedProducts)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="@recProduct.img_Link" class="card-img-top" alt="@recProduct.Name recommendation for the logged in user">
                     <div class="card-body">
                         <h5 class="card-title">@recProduct.Name</h5>
                         <form id="@recProduct.Product_ID" method="get" asp-page="/ProductDetails">
@@ -39,19 +68,6 @@
                 </div>
             </div>
         }
-    </div>
-</div>
-<br />
-
-<!-- Recommendations div -->
-<div class="text-center">
-    @if (User.Identity.IsAuthenticated)
-    {
-        <h3 style="font-size: 3vw;">Aurora's Recommendations For You</h3>
-    }
-    else
-    {
-        <h3 style="font-size: 3vw;">Best Sellers</h3>
     }
 </div>
 

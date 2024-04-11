@@ -8,6 +8,8 @@
         public IQueryable<ItemRecommendations> ItemRecommendations { get; }
         
         public IQueryable<UserRecommendations> UserRecommendations { get; }
+        public IQueryable<TopRecommendations> TopRecommendations { get; }
+
 
         void SaveProduct(Product p);
         void CreateProduct(Product p);
