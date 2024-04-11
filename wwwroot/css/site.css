@@ -90,8 +90,8 @@ body {
 
 .btn-primary {
     color: #fff;
-    background-color: #F2CD37;
-    border-color: #F2CD37;
+    background-color: #007bff; /* Bootstrap's btn-primary blue color */
+    border-color: #007bff; /* Bootstrap's btn-primary blue color */
     font-size: 1.25rem;
     border-radius: 10px;
     font-family: 'Saira Condensed', sans-serif;
@@ -101,9 +101,10 @@ body {
 
     .btn-primary:hover {
         background-color: white;
-        color: #F2CD37;
-        border-color: #F2CD37;
+        color: #007bff; /* Bootstrap's btn-primary blue color */
+        border-color: #007bff; /* Bootstrap's btn-primary blue color */
     }
+
 
 
 
