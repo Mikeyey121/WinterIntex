@@ -1,56 +1,53 @@
 ﻿@page
 @model WinterIntex.Pages.ProductDetailsModel
-@{
-}
-<div class="text-left">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Back</a>
-</div>
 
-<h4>@Model.CoolProduct.Name</h4>
+<div class="container">
+    <div class="row">
+        <!-- Product Details -->
+        <div class="col-md-6">
+            <div class="text-left mb-3">
+                <a class="btn btn-primary" href="@Model.ReturnUrl">Back</a>
+            </div>
 
-<ul>
-<li>@Model.CoolProduct.Year</li>
-<li>@Model.CoolProduct.num_parts</li>
-<li><img class="card" style="width: 18rem;" src="@Model.CoolProduct.img_Link" alt="Image for @Model.CoolProduct.Name" /></li>
-<li>@Model.CoolProduct.Description</li>
-</ul>
+            <h4>@Model.CoolProduct.Name</h4>
+            <ul>
+                <li>@Model.CoolProduct.Year</li>
+                <li>@Model.CoolProduct.num_parts</li>
+                <li>
+                    <img class="card" style="width: 100%;" src="@Model.CoolProduct.img_Link" alt="Image for @Model.CoolProduct.Name" />
+                </li>
+                <li>@Model.CoolProduct.Description</li>
+            </ul>
+        </div>
 
-@* Add to Cart
- *@
-<form id="@Model.CoolProduct.Product_ID" method="post" asp-page="/Cart">
-    <input type="hidden" asp-for="Product_ID" value="@Model.CoolProduct.Product_ID" />
-    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-    <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart</button>
-</form>
-
-<h3>Products you may also like:</h3>
-<div class="row">
-    <div class="col-4">
-        <h5>@Model.RecProduct1.Name</h5>
-        <form id="@Model.RecProduct1.Product_ID" method="get" asp-page="/ProductDetails">
-            <input type="hidden" asp-for="Product_ID" value="@Model.RecProduct1.Product_ID" />
-            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-            <button type="submit" class="btn-outline-success btn-sm float-end">View Details</button>
-        </form>
-        <img class="card" style="width: 18rem;" src="@Model.RecProduct1.img_Link" alt="@Model.RecProduct1.Name recommendation for @Model.CoolProduct.Name " />
+        <!-- Add to Cart -->
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <form id="@Model.CoolProduct.Product_ID" method="post" asp-page="/Cart" class="mt-3">
+                <input type="hidden" asp-for="Product_ID" value="@Model.CoolProduct.Product_ID" />
+                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                <button type="submit" class="btn btn-lg btn-success">Add to Cart</button>
+            </form>
+        </div>
     </div>
-    <div class="col-4">
-        <h5>@Model.RecProduct2.Name</h5>
-        <form id="@Model.RecProduct2.Product_ID" method="get" asp-page="/ProductDetails">
-            <input type="hidden" asp-for="Product_ID" value="@Model.RecProduct2.Product_ID" />
-            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-            <button type="submit" class="btn-outline-success btn-sm float-end">View Details</button>
-        </form>
-        <img class="card" style="width: 18rem;" src="@Model.RecProduct2.img_Link" alt="@Model.RecProduct2.Name recommendation for @Model.CoolProduct.Name " />
-    </div>
-    <div class="col-4">
-        <h5>@Model.RecProduct3.Name</h5>
-        <form id="@Model.RecProduct3.Product_ID" method="get" asp-page="/ProductDetails">
-            <input type="hidden" asp-for="Product_ID" value="@Model.RecProduct3.Product_ID" />
-            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-            <button type="submit" class="btn-outline-success btn-sm float-end">View Details</button>
-        </form>
-        <img class="card" style="width: 18rem;" src="@Model.RecProduct3.img_Link" alt="@Model.RecProduct3.Name recommendation for @Model.CoolProduct.Name " />
+
+    <!-- Recommended Products -->
+    <div class="row mt-5">
+        <h3>Products you may also like:</h3>
+        @foreach (var recProduct in new[] { Model.RecProduct1, Model.RecProduct2, Model.RecProduct3 })
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="@recProduct.img_Link" class="card-img-top" alt="@recProduct.Name recommendation for @Model.CoolProduct.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@recProduct.Name</h5>
+                        <form id="@recProduct.Product_ID" method="get" asp-page="/ProductDetails">
+                            <input type="hidden" asp-for="Product_ID" value="@recProduct.Product_ID" />
+                            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                            <button type="submit" class="btn btn-outline-success btn-sm">View Details</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>
-
