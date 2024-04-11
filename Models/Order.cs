@@ -9,7 +9,7 @@ namespace WinterIntex.Models
     {
         [Key]
         public int transaction_ID { get; set; }
-        public int customer_ID { get; set; }
+        public string customer_ID { get; set; }
 
         [Required(ErrorMessage = "Date is required")]
         public string? Date { get; set; }
@@ -51,7 +51,7 @@ namespace WinterIntex.Models
         [Required(ErrorMessage = "TypeofCard is required")]
         [ForeignKey("CardTypes")]
         public int? Type_Of_Card { get; set; }
-        public bool Fraud { get; set; } = false;
+        public bool Fraud { get; set; }
 
         // Foreign key connections
         public virtual EntryMethods? EntryMethods { get; set; }

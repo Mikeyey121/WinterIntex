@@ -1,9 +1,11 @@
 ﻿@page
-
+@model WinterIntex.Pages.FraudCompletedModel
+@{
+}
 <div class="text-center">
     <h2>Thanks!</h2>
-    <p>Thanks for placing order #@transaction_ID</p>
-    <p>We'll ship your goods as soon as possible.</p>
+    <p>Thanks for placing your order</p>
+    <p>Your order is now being reviewed!</p>
     <a class="btn btn-primary" asp-controller="Home">Return to Store</a>
 </div>
 
@@ -14,4 +16,3 @@
     [BindProperty(SupportsGet = true)]
     public int? transaction_ID { get; set; }
 }
-

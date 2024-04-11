@@ -15,6 +15,7 @@ namespace WinterIntex.Models
         public DbSet<Country> Country { get; set; }
         public DbSet<Bank> Banks { get; set; }
         public DbSet<CardTypes> CardTypes { get; set; }
+        public DbSet<Customer> Customer { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

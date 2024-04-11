@@ -19,6 +19,7 @@ namespace WinterIntex.Models
         public IQueryable<Country> ShippingCountry => _context.Country;
         public IQueryable<Bank> Banks => _context.Banks;
         public IQueryable<CardTypes> CardTypes => _context.CardTypes;
+        public IQueryable<Customer> Customer => _context.Customer;
 
         public void SaveOrder(Order order)
         {
