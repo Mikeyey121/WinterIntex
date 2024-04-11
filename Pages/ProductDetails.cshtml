@@ -1,33 +1,60 @@
 ﻿@page
 @model WinterIntex.Pages.ProductDetailsModel
 
+<style>
+    .truncate-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .col-md-6 div,
+    .col-md-6 form {
+        margin-bottom: 10px; /* Adjust as needed for spacing between elements */
+    }
+</style>
+
+<!-- Back Arrow and Title -->
 <div class="container">
     <div class="row">
-        <!-- Product Details -->
         <div class="col-md-6">
             <div class="text-left mb-3">
                 <a class="btn btn-primary" href="@Model.ReturnUrl">Back</a>
+                <div style="padding: 5px;"></div>
+                <h4>@Model.CoolProduct.Name</h4>
             </div>
+        </div>
+    </div>
+</div>
 
-            <h4>@Model.CoolProduct.Name</h4>
-            <ul>
-                <li>@Model.CoolProduct.Year</li>
-                <li>@Model.CoolProduct.num_parts</li>
-                <li>
-                    <img class="card" style="width: 100%;" src="@Model.CoolProduct.img_Link" alt="Image for @Model.CoolProduct.Name" />
-                </li>
-                <li>@Model.CoolProduct.Description</li>
-            </ul>
+<div class="container">
+    <div class="row">
+        <!-- Product Image -->
+        <div class="col-md-6">
+            <img class="card" style="width: 100%;" src="@Model.CoolProduct.img_Link" alt="Image for @Model.CoolProduct.Name" />
         </div>
 
-        <!-- Add to Cart -->
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <!-- Add to Cart and Details -->
+        <div class="col-md-6">
+            <div>
+                $@Model.CoolProduct.Price
+            </div>
+            <div>
+                Year: @Model.CoolProduct.Year
+            </div>
+            <div>
+                Number of Parts: @Model.CoolProduct.num_parts
+            </div>
+            <div class="truncate-text" id="truncateText">
+                <p>
+                    @Model.CoolProduct.Description
+                </p>
+            </div>
             <form id="@Model.CoolProduct.Product_ID" method="post" asp-page="/Cart" class="mt-3">
                 <input type="hidden" asp-for="Product_ID" value="@Model.CoolProduct.Product_ID" />
                 <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
                 <button type="submit" class="btn btn-lg btn-success">Add to Cart</button>
             </form>
         </div>
+
     </div>
 
     <!-- Recommended Products -->
@@ -51,3 +78,22 @@
         }
     </div>
 </div>
+
+<!-- JavaScript for truncating description -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var maxLength = 500; // Change the maximum character limit as per your requirement
+        var textElement = document.getElementById("truncateText");
+        var text = textElement.innerText;
+
+        // Check if text length exceeds the maximum length
+        if (text.length > maxLength) {
+            // Truncate the text and add "..." at the end
+            var truncatedText = text.slice(0, maxLength) + "...";
+            textElement.innerText = truncatedText;
+
+            // Display full text in a tooltip when hovered
+            textElement.setAttribute("title", text);
+        }
+    });
+</script>
