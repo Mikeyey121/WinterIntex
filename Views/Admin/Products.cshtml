@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Product>
+@{
+    Layout = "_AdminLayout";
+}
+<h4>This is the products component</h4>
+
+<table class="table table-bordered">
+    <thead class="fw-bold">
+        <tr>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Number of Parts</th>
+            <th>Price</th>
+            <th>Primary Color</th>
+            <th>Secondary Color</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Year</td>
+                <td>@product.num_parts</td>
+                <td>@product.Price</td>
+                <td>@product.Primary_Color</td>
+                <td>@product.Secondary_Color</td>
+                <td>
+                    @foreach (var cpo in product.CategoryProductOrders)
+                    {
+                        <div>@cpo.Category.Category_Description</div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

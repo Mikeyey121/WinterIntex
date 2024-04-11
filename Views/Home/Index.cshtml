@@ -5,22 +5,37 @@
 <!-- Hero div -->
 <div class="bg-black text-white">
     <div class="container">
-        <div class="row m-1 p-1" style="height: 400px;">
-            <div class="col-md-5">
+        <div class="row m-1 p-1 align-items-center">
+            <div class="col-md-5 text-center text-md-start">
                 <br />
-                <h1 style="font-size: 70px;">Welcome to Aurora's LEGO Shop</h1>
-                <h4 style="font-size: 28px;">With new arrivals coming to you all summer long</h4>
+                <h1 class="fw-bold" style="font-size: 4.5vw;">Welcome to Aurora's LEGO Shop</h1>
+                <h4 class="fw-normal" style="font-size: 1.5vw;">With new arrivals coming to you all summer long</h4>
                 <br />
-                <div style="display: flex; justify-content: center;">
-                    <a asp-controller="Home" asp-action="Products" class="btn btn-primary" style="font-size: 30px; border-radius: 10px; font-family: 'Saira Condensed', sans-serif;">Shop Now</a>
+                <div class="text-center">
+                    <a asp-controller="Home" asp-action="Products" class="btn btn-primary" style="font-size: 1.8vw; border-radius: 10px; font-family: 'Saira Condensed', sans-serif; width: 250px">Shop Now</a>
                 </div>
+                <br />
             </div>
-            <div class="col-md-7">
-                <div style="text-align: center;">
-                    <br />
-                    <img src="~/img/giphy (1).gif" alt="LEGO Batman gif" style="width: 600px; height: auto;">
-                </div>
+            <div class="col-md-7 text-center">
+                <br class="d-md-none">
+                <img src="~/img/giphy (1).gif" alt="LEGO Batman gif" class="img-fluid" style="max-width: 100%;">
             </div>
         </div>
     </div>
 </div>
+<br />
+
+<!-- Recommendations div -->
+<div class="text-center">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h3 style="font-size: 3vw;">Aurora's Recommendations For You</h3>
+    }
+    else
+    {
+        <h3 style="font-size: 3vw;">Best Sellers</h3>
+    }
+</div>
+
+
+
