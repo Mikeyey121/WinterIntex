@@ -19,8 +19,7 @@ html {
 
 body {
     margin-bottom: 60px;
-/*    font-size: 2vw;
-*/}
+}
 
 .bg-yellow {
     background-color: #F2CD37 !important;
@@ -29,15 +28,6 @@ body {
 .bg-black {
     background-color: #000000 !important;
 }
-
-/*body {
-    font-family: 'Jomhuria', sans-serif;
-}*/
-
-/*nav {
-    font-family: 'Jomhuria', sans-serif;
-    font-size: 2.5vw;
-}*/
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Saira Condensed';
@@ -49,4 +39,72 @@ nav {
     src: url('~/fonts/SairaCondensed-Regular.ttf') format('truetype');
     font-size: 1.5vw;
 }
+
+/* CSS for Product Cards */
+.card {
+    width: 300px;
+}
+
+.card-header {
+    background-color: white;
+}
+
+.img-wrapper {
+    background-color: white;
+    padding: 0 20px; /* Adjust padding as needed */
+}
+
+.card-footer {
+    background-color: white;
+}
+
+    /* CSS for buttons inside the card-footer */
+    .card-footer button {
+        margin-right: 5px; /* Adjust spacing between buttons */
+    }
+
+.btn-view-details {
+    color: #F2CD37; /* Set text color */
+    border-color: #F2CD37; /* Set border color */
+}
+
+    .btn-view-details:hover {
+        color: #fff; /* Change text color on hover */
+        background-color: #F2CD37; /* Change background color on hover */
+        border-color: #F2CD37; /* Change border color on hover */
+    }
+
+.badge-price {
+    background-color: #F2CD37; /* Set background color */
+    color: #fff; /* Set text color */
+}
+
+    .badge-price small {
+        color: #fff; /* Set text color for small text inside the span */
+    }
+
+body {
+    background-color: #F5F5F5; /* Off-white background color */
+    color: #000000; /* Black text color */
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #F2CD37;
+    border-color: #F2CD37;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    font-family: 'Saira Condensed', sans-serif;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+}
+
+    .btn-primary:hover {
+        background-color: white;
+        color: #F2CD37;
+        border-color: #F2CD37;
+    }
+
+
+
 
