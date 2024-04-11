@@ -3,9 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
 using WinterIntex.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WinterIntex.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private WinterIntexContext _context;
