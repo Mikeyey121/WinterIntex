@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WinterIntex.Controllers
 {
@@ -30,7 +31,7 @@ namespace WinterIntex.Controllers
 
             _session = new InferenceSession("fraud_detection_model.onnx");
         }
-
+        [Authorize]
         public ViewResult Checkout()
         {
             Order order = new Order();
@@ -50,6 +51,7 @@ namespace WinterIntex.Controllers
 
             return View(order);
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Checkout(Order order)
         {

@@ -111,9 +111,6 @@ namespace WinterIntex {
             // Setting app to builder.Build
             var app = builder.Build();
 
-            // Configure for authorization
-            app.UseAuthorization();
-            app.UseAuthentication();
 
 
             // Configure the HTTP request pipeline.
@@ -154,6 +151,10 @@ namespace WinterIntex {
             {
                 app.UseHsts();
             }
+            // Configure for authorization
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
 
             // Configuration for mapping controller routes

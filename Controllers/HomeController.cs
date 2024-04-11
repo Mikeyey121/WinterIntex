@@ -134,7 +134,7 @@ namespace WinterIntex.Controllers
             return View();
         }
 
-        //[Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Admin()
         {
             return View();
