@@ -34,8 +34,8 @@
 
         <!-- Add to Cart and Details -->
         <div class="col-md-6">
-            <div>
-                $@Model.CoolProduct.Price
+            <div class="price-container">
+                <span class="badge rounded-pill" style="font-size: 20px; padding: 8px 12px; margin-left: auto; background-color: #F2CD37">$@Model.CoolProduct.Price.00</span>
             </div>
             <div>
                 Year: @Model.CoolProduct.Year
@@ -54,7 +54,6 @@
                 <button type="submit" class="btn btn-lg btn-success">Add to Cart</button>
             </form>
         </div>
-
     </div>
 
     <!-- Recommended Products -->
@@ -63,15 +62,9 @@
         @foreach (var recProduct in new[] { Model.RecProduct1, Model.RecProduct2, Model.RecProduct3 })
         {
             <div class="col-md-4 mb-3">
-                <div class="card">
-                    <img src="@recProduct.img_Link" class="card-img-top" alt="@recProduct.Name recommendation for @Model.CoolProduct.Name">
-                    <div class="card-body">
-                        <h5 class="card-title">@recProduct.Name</h5>
-                        <form id="@recProduct.Product_ID" method="get" asp-page="/ProductDetails">
-                            <input type="hidden" asp-for="Product_ID" value="@recProduct.Product_ID" />
-                            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                            <button type="submit" class="btn btn-outline-success btn-sm">View Details</button>
-                        </form>
+                <div class="row mb-3">
+                    <div class="col-lg-6">
+                        <partial name="ProductSummary" model="recProduct" />
                     </div>
                 </div>
             </div>
