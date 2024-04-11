@@ -1,35 +1,38 @@
 ﻿@using WinterIntex.Infrastructure
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
 @model Product
-<div class="card m-1 p-1">
-    <h4>
-        @Model.Name
-        <span class="badge rounded-pill bg-primary text-white float-end"><small>$@Model.Price.00</small></span>
-    </h4>
-    <ul>
-        <li class="card" style="width: 18rem;">
-            <img src="@Model.img_Link" class="card-img-top" alt="Image for @Model.Name">
-        </li>
-        
-    </ul>
-    
-    @* This is the button for adding to a cart
- *@
-    <form id="@Model.Product_ID" method="post" asp-page="/Cart">
-        <input type="hidden" asp-for="Product_ID" value="@Model.Product_ID"/>
-        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-        <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart</button>
-    </form>
 
-    @* This is the button for viewing product details
- *@
-    <form id="@Model.Product_ID" method="get" asp-page="/ProductDetails">
-        <input type="hidden" asp-for="Product_ID" value="@Model.Product_ID" />
-        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-        <button type="submit" class="btn-outline-success btn-sm float-end">View Details</button>
-    </form>
+<!-- Product Cards-->
+<div class="card m-1 p-1">
+
+    <!-- Card Header -->
+    <div class="card-header">
+        <h4 class="card-title">@Model.Name</h4>
+        <span class="badge rounded-pill badge-price float-end"><small>$@Model.Price.00</small></span>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body d-flex align-items-center justify-content-center" style="height: 200px; overflow: hidden; padding: 0;">
+        <div class="img-wrapper">
+            <img src="@Model.img_Link" class="card-img img-fluid" alt="Image for @Model.Name">
+        </div>
+    </div>
+
+    <!-- Card Footer -->
+    <div class="card-footer d-flex justify-content-between align-items-center">
+
+        <!-- Add to Cart Button -->
+        <form id="addToCartForm-@Model.Product_ID" method="post" asp-page="/Cart" class="d-flex align-items-center">
+            <input type="hidden" asp-for="Product_ID" value="@Model.Product_ID" />
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <button type="submit" class="btn btn-outline-success btn-sm">Add to Cart</button>
+        </form>
+
+        <!-- View Details Button -->
+        <form id="viewDetailsForm-@Model.Product_ID" method="get" asp-page="/ProductDetails" class="d-flex align-items-center">
+            <input type="hidden" asp-for="Product_ID" value="@Model.Product_ID" />
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <button type="submit" class="btn btn-outline-primary btn-sm btn-view-details">View Details</button>
+        </form>
+
+    </div>
 </div>
