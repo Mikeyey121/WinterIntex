@@ -12,6 +12,13 @@ namespace WinterIntex.Controllers
     {
         private IProductRepository _repo;
 
+        // public Product UserProduct { get; set; } = new Product();
+        // public Product UserRec1 { get; set; } = new Product();
+        // public Product UserRec2 { get; set; } = new Product();
+        // public Product UserRec3 { get; set; } = new Product();
+        //
+        // public string customer_ID { get; set; };
+        // public UserRecommendations UserRecommendations { get; set; } = new UserRecommendations();
         public HomeController(IProductRepository temp)
         {
             _repo = temp;
