@@ -84,20 +84,25 @@ namespace WinterIntex.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Index()
+        // public async Task<IActionResult> Index()
+        // {
+        //     string example = "";
+        //     // Fetch the user's recommendations using the customer ID
+        //     var userRecommendations = _repo.UserRecommendations.FirstOrDefaultAsync(x => x.customer_ID == customer_ID);
+        //     
+        //     if (userRecommendations != null)
+        //     {
+        //         // Fetch each recommended product details from the database
+        //         UserRec1 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_1);
+        //         UserRec2 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_2);
+        //         UserRec3 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_3);
+        //     };
+        //     
+        //     return View();
+        // }
+
+        public IActionResult Index()
         {
-            string example = "";
-            // Fetch the user's recommendations using the customer ID
-            var userRecommendations = _repo.UserRecommendations.FirstOrDefaultAsync(x => x.customer_ID == customer_ID);
-            
-            if (userRecommendations != null)
-            {
-                // Fetch each recommended product details from the database
-                UserRec1 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_1);
-                UserRec2 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_2);
-                UserRec3 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_3);
-            };
-            
             return View();
         }
         public IActionResult About()

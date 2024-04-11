@@ -22,23 +22,23 @@
                 <img src="~/img/giphy (1).gif" alt="LEGO Batman gif" class="img-fluid" style="max-width: 100%;">
             </div>
         </div>
-        <h3>Aurora's recommendations for you:</h3>
-        @foreach (var recProduct in new[] { Model.Recommendation_1, Model.Recommendation_2, Model.Recommendation_3 })
-        {
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <img src="@recProduct." class="card-img-top" alt="@recProduct.Name recommendation for @Model.CoolProduct.Name">
-                    <div class="card-body">
-                        <h5 class="card-title">@recProduct.Name</h5>
-                        <form id="@recProduct.Product_ID" method="get" asp-page="/ProductDetails">
-                            <input type="hidden" asp-for="Product_ID" value="@recProduct.Product_ID" />
-                            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                            <button type="submit" class="btn btn-outline-success btn-sm">View Details</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        }
+        @* <h3>Aurora's recommendations for you:</h3> *@
+        @* @foreach (var recProduct in new[] { Model.Recommendation_1, Model.Recommendation_2, Model.Recommendation_3 }) *@
+        @* { *@
+        @*     <div class="col-md-4 mb-3"> *@
+        @*         <div class="card"> *@
+        @*             <img src="@recProduct." class="card-img-top" alt="@recProduct.Name recommendation for @Model.CoolProduct.Name"> *@
+        @*             <div class="card-body"> *@
+        @*                 <h5 class="card-title">@recProduct.Name</h5> *@
+        @*                 <form id="@recProduct.Product_ID" method="get" asp-page="/ProductDetails"> *@
+        @*                     <input type="hidden" asp-for="Product_ID" value="@recProduct.Product_ID" /> *@
+        @*                     <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" /> *@
+        @*                     <button type="submit" class="btn btn-outline-success btn-sm">View Details</button> *@
+        @*                 </form> *@
+        @*             </div> *@
+        @*         </div> *@
+        @*     </div> *@
+        @* } *@
     </div>
 </div>
 <br />

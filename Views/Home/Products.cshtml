@@ -2,52 +2,56 @@
     ViewData["Title"] = "Products Page";
 }
 
-<!-- Heading -->
-<div class="text-center">
-    <h3 style="font-size: 3.5vw;">Browse my favorite sets!</h3>
-    <br />
+<!-- Heading adapted to theme styles -->
+<div class="container text-center mt-5">
+    <h2 class="display-4">Browse my favorite sets!</h2>
 </div>
 
-<div class="container">
-    <div class="row m-1 p-1">
 
-        <!-- Filters -->
-        <div class="col-lg-3">
-            <div class="card mb-3">
-                <div class="card-header">
-                    <h6>Product Type</h6>
-                </div>
-                <div class="card-body">
-                    @await Component.InvokeAsync("ProductType")
-                </div>
+<div class="container">
+<div class="row m-1 p-1">
+
+    <!-- Filters Sidebar adapted to theme -->
+    <div class="col-lg-3">
+        <div class="card filter-card mb-4">
+            <div class="card-header">
+                <h5>Product Type</h5>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h6>Product Color</h6>
-                </div>
-                <div class="card-body">
-                    @await Component.InvokeAsync("ProductColor")
-                </div>
+            <div class="card-body">
+                @await Component.InvokeAsync("ProductType")
             </div>
         </div>
-
-        <!-- Product Cards -->
-        <div class="col-lg-9">
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-                @foreach (Product p in Model.Products)
-                {
-                    <div class="row mb-3">
-                        <div class="col-lg-6">
-                            <partial name="ProductSummary" model="p" />
-                        </div>
-                    </div>
-                }
+        <div class="card filter-card">
+            <div class="card-header">
+                <h5>Product Color</h5>
             </div>
-
-            <!-- Pagination -->
-            <div page-model="@Model.PaginationInfo" page-action="Products" page-classes-enabled="true" page-class="btn"
-                 page-class-normal="btn-outline-dark" page-class-selected="btn-primary"
-                 page-url-categoryDescription="@Model.CurrentCategoryDescription" class="btn-group pull-right m-1"></div>
+            <div class="card-body">
+                @await Component.InvokeAsync("ProductColor")
+            </div>
         </div>
     </div>
+
+    <!-- Product Cards Section adapted to theme -->
+    <div class="col-lg-9">
+        <div class="row g-4">
+            @foreach (var p in Model.Products)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <partial name="ProductSummary" model="p" />
+                </div>
+            }
+        </div>
+        <!-- Pagination -->
+        <div class="d-flex justify-content-end mt-4">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <div page-model="@Model.PaginationInfo" page-action="Products" page-classes-enabled="true" page-class="btn"
+                         page-class-normal="btn-outline-dark" page-class-selected="btn-primary"
+                         page-url-categoryDescription="@Model.CurrentCategoryDescription" class="btn-group pull-right m-1">
+                    </div>                 
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
 </div>
