@@ -11,14 +11,12 @@ namespace WinterIntex.Controllers
     public class HomeController : Controller
     {
         private IProductRepository _repo;
-
-        // public Product UserProduct { get; set; } = new Product();
-        // public Product UserRec1 { get; set; } = new Product();
-        // public Product UserRec2 { get; set; } = new Product();
-        // public Product UserRec3 { get; set; } = new Product();
-        //
-        // public string customer_ID { get; set; };
-        // public UserRecommendations UserRecommendations { get; set; } = new UserRecommendations();
+        public Product UserRec1 { get; set; } = new Product();
+        public Product UserRec2 { get; set; } = new Product();
+        public Product UserRec3 { get; set; } = new Product();
+        
+        public string customer_ID { get; set; }
+        public UserRecommendations UserRecommendations { get; set; } = new UserRecommendations();
         public HomeController(IProductRepository temp)
         {
             _repo = temp;
@@ -86,8 +84,20 @@ namespace WinterIntex.Controllers
         {
             return View();
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            string example = "";
+            // Fetch the user's recommendations using the customer ID
+            var userRecommendations = _repo.UserRecommendations.FirstOrDefaultAsync(x => x.customer_ID == customer_ID);
+            
+            if (userRecommendations != null)
+            {
+                // Fetch each recommended product details from the database
+                UserRec1 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_1);
+                UserRec2 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_2);
+                UserRec3 = await _repo.Products.FirstOrDefaultAsync(x => x.customer_ID == UserRecommendations.Recommendation_3);
+            };
+            
             return View();
         }
         public IActionResult About()

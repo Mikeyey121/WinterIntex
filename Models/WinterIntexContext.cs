@@ -9,6 +9,10 @@ namespace WinterIntex.Models
         public DbSet<CategoryProductOrder> CategoryProductOrders { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ItemRecommendations> ItemRecommendations { get; set; }
+        
+        public DbSet<UserRecommendations> UserRecommendations { get; set; }
+
+        
         public DbSet<Order> Order => Set<Order>();
         public DbSet<EntryMethods> EntryMethods { get; set; }
         public DbSet<TransactionTypes> TransactionTypes { get; set; }
