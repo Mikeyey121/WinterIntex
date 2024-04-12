@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using WinterIntex.Models.ViewModels;
+using System.Drawing;
 
 namespace WinterIntex.Controllers
 {
@@ -42,9 +43,11 @@ namespace WinterIntex.Controllers
             var FraudOrders = _oRepo.Order.Where(x => x.Fraud == true)
                 .Include(x => x.Customers)
                 .OrderByDescending(x => x.Date)
-                .ToList();
+            .ToList();
 
-            return View(FraudOrders);
+   
+
+                return View(FraudOrders);
         }
         public IActionResult Users()
         {
@@ -88,6 +91,8 @@ namespace WinterIntex.Controllers
         {
             var record = _repo.Products
                 .Single(x => x.Product_ID == id);
+
+           
 
             ViewBag.Colors = _repo.Color
                 .OrderBy(x => x.Color_Description)
@@ -144,6 +149,7 @@ namespace WinterIntex.Controllers
         [HttpGet]
         public async Task<IActionResult> EditUser(string id)
         {
+            
             var user = await _userManager.FindByIdAsync(id);
             if (user == null)
                 return View("Error"); // Handle the case where the user is not found

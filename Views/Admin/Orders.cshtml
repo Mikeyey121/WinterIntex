@@ -3,8 +3,8 @@
 }
 @model IEnumerable<Order>
 
-<h4>This is the orders component</h4>
 
+<h3>Orders That Are Predicted to be Fradulent</h3>
 <table class="table table-bordered">
     <thead class="fw-bold">
         <tr>
@@ -22,12 +22,9 @@
             <tr>
                 <td>@order.Customers.first_name</td>
                 <td>@(order.Date.HasValue ? order.Date.Value.ToString("MM-yyyy-dd") : "N/A")</td>
-                <td>$@(order.Amount.HasValue ? order.Amount.Value.ToString("C") : "N/A")</td>
+                <td>@(order.Amount.HasValue ? order.Amount.Value.ToString("C") : "N/A")</td>
                 <td>@order.Fraud</td>
-                
-             @*    <td><a class="btn btn-info" asp-controller="Admin" asp-action="Edit" asp-route-id="@order.Product_ID">Edit</a></td>
-                <td><a class="btn btn-danger" asp-controller="Admin" asp-action="Delete" asp-route-id="@order.Product_ID">Delete</a></td>
- *@
+      
 
             </tr>
         }
