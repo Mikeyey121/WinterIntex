@@ -3,30 +3,16 @@
 
 <!-- Product Cards-->
 <div class="grid-card">
-
     <div class="img-wrapper">
         <img src="@Model.img_Link" class="card-img img-fluid" style="height: 200px" alt="Image for @Model.Name">
     </div>
-    <!-- Card Header -->
     <h4 class="card-title" style="text-align: left;">@Model.Name</h4>
     <div style="color: black; text-align: left;">$@Model.Price.00</div>
 
-<!-- Card Body -->
-
-
-<!-- Card Footer -->
-
-    <!-- Add to Cart Button -->
-    <form id="addToCartForm-@Model.Product_ID" method="post" asp-page="/Cart" class="d-flex align-items-center">
-        <input type="hidden" asp-for="Product_ID" value="@Model.Product_ID" />
-        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-        <button type="submit" class="btn btn-sm btn-invert">Add to Cart</button>
-    </form>
-
     <!-- View Details Button -->
-@*     <form id="viewDetailsForm-@Model.Product_ID" method="get" asp-page="/ProductDetails" class="d-flex align-items-center">
+    <form id="viewDetailsForm-@Model.Product_ID" method="get" asp-page="/ProductDetails" style="text-align:left">
         <input type="hidden" asp-for="Product_ID" value="@Model.Product_ID" />
         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-        <button type="submit" class="btn btn-outline-primary btn-sm btn-view-details">View Details</button>
-    </form> *@
+        <button type="submit" class="btn btn-secondary">View Details</button>
+    </form>
 </div>

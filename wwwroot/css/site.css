@@ -1,20 +1,20 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
@@ -91,19 +91,19 @@ body {
 
 .btn-primary {
     color: #fff;
-    background-color: #007bff; /* Bootstrap's btn-primary blue color */
-    border-color: #007bff; /* Bootstrap's btn-primary blue color */
+    background-color: #FFBB98; /* Bootstrap's btn-primary blue color */
+    border-color: #FFBB98; /* Bootstrap's btn-primary blue color */
     font-size: 1.25rem;
     border-radius: 10px;
-    font-family: 'Saira Condensed', sans-serif;
+    font-family: 'Raleway', sans-serif;
     padding: 0.5rem 1rem;
     border: 2px solid transparent;
 }
 
     .btn-primary:hover {
         background-color: white;
-        color: #007bff; /* Bootstrap's btn-primary blue color */
-        border-color: #007bff; /* Bootstrap's btn-primary blue color */
+        color: #FFBB98; /* Bootstrap's btn-primary blue color */
+        border-color: #FFBB98; /* Bootstrap's btn-primary blue color */
     }
 
 .scrollable-cards-container {
@@ -131,105 +131,39 @@ body {
     background-color: #fff;
 }
 
-.btn-invert {
+.btn-secondary {
+    color: #fff;
     background-color: #7D8E95;
-    color: white;
+    border-color: #7D8E95;
+    border-radius: 10px;
+    font-family: 'Raleway', sans-serif;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
     transition: background-color 0.3s, color 0.3s;
+    height: 30px;
+    width: 130px;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
 }
 
-    .btn-invert:hover {
+
+    .btn-secondary:hover {
         background-color: white;
         color: #7D8E95;
+        border-color: #7D8E95;
     }
 
-
-/*Michael's table epickness*/
-
-
-
-/* Center the form on the page */
-.form-container {
-    width: 50%; /* Adjust the width as necessary */
-    margin: 50px auto; /* Vertical spacing and horizontal auto margin centers the form */
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    border: 1px solid #ddd; /* Border for definition */
-    border-radius: 15px;
+.btn-back {
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 10px;
+    color: #7D8E95;
+    border-color: #7D8E95;
 }
 
-
-    form-container button:hover {
-        background-color: #F7F4EF; /* Lighter peach shade on hover */
-        color: #333; /* Darker text color for better readability when button is lighter     */
-    }
-
-
-/* Style the second section distinctly, assuming it has a class 'secondary-section' */
-/* Improved styling for the secondary section */
-.secondary-section {
-    background-color: #e9e9e9; /* Slightly different background */
-    padding: 20px;
-    margin-top: 20px; /* Spacing from the preceding elements */
-    border-top: 1px solid #ccc; /* Visual separation from the first section */
-    text-align: center; /* Centering the text and button inside the section */
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), /* Inner shadow for some depth */
-    0 1px 0 rgba(255, 255, 255, 0.1); /* Subtle top highlight for depth */
-    border-radius: 15px 15px; /* Rounded corners at the bottom */
-    width:50%;
-    margin-right: 25%;
-    margin-left: 25%;
-}
-
-    /* Style the button inside the secondary section */
-    .secondary-section button {
-        background-color: #FFBB98; /* Peach color */
+    .btn-back:hover {
         color: #fff;
-        border: none;
-        padding: 10px 20px;
-        margin-top: 10px; /* Spacing from other elements */
-        cursor: pointer;
-        border-radius: 5px; /* Rounded corners */
-        transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        background-color: #7D8E95;
     }
-
-        /* Add a hover effect to the button for better user interaction */
-        .secondary-section button:hover {
-            background-color: #F7F4EF; /* Lighter peach shade on hover */
-            color: #333; /* Darker text color for better readability when button is lighter    */    
-                }
-
-
-
-
-
-/* Responsive adjustments */
-    @media screen and (max-width: 768px) {
-        .secondary-section {
-            padding: 20px 10px; /* Smaller padding on the sides on smaller screens */
-        }
-    }
-    /* Enhance the appearance of buttons for a more modern look */
-
-
-/* Style input fields for better visual appeal */
-        input [type="email"], input[type="password"] {
-    width: calc(100% - 20px); /* Full width minus padding */
-    padding: 10px;
-    margin: 8px 0; /* Spacing between fields */
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box; /* Border-box ensures padding doesn't affect width */
-    border-radius: 4px; /* Consistency with button border radius */
-}
-
-/* Ensure the form and its elements respond well on smaller screens */
-@media screen and (max-width: 768px) {
-    .form-container {
-        width: 80%; /* Wider on small screens for readability */
-    }
-}
-
-
-
-/*Michael's table epickness*/

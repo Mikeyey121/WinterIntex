@@ -14,22 +14,22 @@
                 <h4 class="fw-normal" style="font-size: 1.5vw;">With new arrivals coming to you all summer long</h4>
                 <br />
                 <div class="text-center">
-                    <a asp-controller="Home" asp-action="Products" class="btn btn-primary" style="background-color: #FFBB98; font-size: 1.8vw; border-radius: 10px; font-family: 'Saira Condensed', sans-serif; width: 250px">Shop Now</a>
+                    <button asp-controller="Home" asp-action="Products" class="btn-primary" style="font-size: 1.8vw; width: 250px">Shop Now</button>
                 </div>
                 <br />
             </div>
-@*             <div class="col-md-7 text-center">
-                <br class="d-md-none">
-                <img src="~/img/giphy (1).gif" alt="LEGO Batman gif" class="img-fluid" style="max-width: 100%;">
+            @*             <div class="col-md-7 text-center">
+            <br class="d-md-none">
+            <img src="~/img/giphy (1).gif" alt="LEGO Batman gif" class="img-fluid" style="max-width: 100%;">
             </div> *@
         </div>
-        
+
     </div>
 </div>
 <br />
 
 <!-- Recommendations div -->
-<div class="text-center">
+<div class="text-center" style="height:450px">
     @if (User.Identity.IsAuthenticated)
     {
         <h3>Aurora's Recommendations for You</h3>
@@ -61,9 +61,9 @@
                                 <partial name="ProductSummary" model="recProduct" />
                             </div>
                         }
-
                     </div>
                 </div>
             </div>
-        }
-    </div>}
+        </div>
+    }
+</div>
