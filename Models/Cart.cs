@@ -1,11 +1,14 @@
 ﻿using Microsoft.Build.Evaluation;
 
+// Model for the cart
+// Includes all crud functionality 
 namespace WinterIntex.Models
 {
     public class Cart
     {
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
+        // CREATE
         public virtual void AddItem(Product p, int quantity)
         {
             CartLine? line = Lines
@@ -26,10 +29,13 @@ namespace WinterIntex.Models
             }
         }
 
+        // DELETE
         public virtual void RemoveLine(Product p) => Lines.RemoveAll(x => x.Product.Product_ID == p.Product_ID);
 
+        // DELETE ALL
         public virtual void Clear() => Lines.Clear();
 
+        // CALCULATE TOTAL
         public decimal CalculateTotal() => Lines.Sum(x => x.Product.Price * x.Quantity);
 
 

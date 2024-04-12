@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
+// View model for the user recommendation
 namespace WinterIntex.Models.ViewModels
 {
     public class UserRecommendationsViewModel

@@ -1,5 +1,6 @@
 namespace WinterIntex.Models
 {
+    // Error view model
     public class ErrorViewModel
     {
         public string? RequestId { get; set; }

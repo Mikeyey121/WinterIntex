@@ -41,20 +41,23 @@ namespace WinterIntex {
             builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 
 
-            // Connection for sql server database 
+            // Connection for sql server database for the identity context
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString)
                 .EnableSensitiveDataLogging());
+
+            // Connectino for sql server database for the programs context file
             builder.Services.AddDbContext<WinterIntexContext>(options =>
                 options.UseSqlServer(connectionString)
                         .EnableSensitiveDataLogging());
 
+            // Adding the filter 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             // Add identity services
             builder.Services.AddDefaultIdentity<IdentityUser>(options =>
             {
-                // Requirements for secure password
+                // Adjusting the requirements for a password to be more secure
                 options.Password.RequiredLength = 20; // At least 20 characters
                 options.Password.RequireUppercase = true; // At least 1 uppercase letter
                 options.Password.RequireLowercase = true; // At least 1 lowercase letter
@@ -63,12 +66,13 @@ namespace WinterIntex {
                 options.Password.RequiredUniqueChars = 6; // At least 6 unique characters
                 options.SignIn.RequireConfirmedAccount = true;
             })
-                .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddRoles<IdentityRole>() // Adding roles to identity 
+            .AddEntityFrameworkStores<ApplicationDbContext>(); // Using the identity context file
 
+            // Configuring to add controllers with views. 
             builder.Services.AddControllersWithViews();
 
-            // Configure HSTS options
+            // Configure HSTS security options
             builder.Services.AddHsts(options =>
             {
                 options.Preload = true;
@@ -77,16 +81,16 @@ namespace WinterIntex {
                 // options.ExcludedHosts.Add("example.com"); // Use this to exclude specific hosts from HSTS
             });
 
-
+            // Configuring for the app to use razor pages
             builder.Services.AddRazorPages();
 
+            // Configuring the http accessor use in session
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //Blazor Services
             builder.Services.AddServerSideBlazor();
 
             // Configuration for client size razor pages
-
             builder.Services.AddControllersWithViews()
                     .AddRazorRuntimeCompilation();
 
@@ -115,8 +119,6 @@ namespace WinterIntex {
             // Setting app to builder.Build
             var app = builder.Build();
 
-
-
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -135,7 +137,7 @@ namespace WinterIntex {
             // Configure for static files we want to use
             app.UseStaticFiles();
 
-            // Add CSP header middleware
+            // Add CSP header middleware requirements to protect the site
             app.Use(async (context, next) =>
             {
                 context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; connect-src 'self' http://localhost:* ws://localhost:*; " +
@@ -145,6 +147,7 @@ namespace WinterIntex {
                 await next();
             });
 
+            // Enabling session
             app.UseSession();
 
             // Configure for routing
@@ -163,12 +166,10 @@ namespace WinterIntex {
             app.UseAuthorization();
 
 
-            // Configuration for mapping controller routes
-
             // Configure for razor pages
             app.MapRazorPages();
 
-            // pageSizes=5&pageNum=1&color=&categoryDescription=
+            // Mapping controller routes
             app.MapControllerRoute("productFilters", "Products/{pageSizes}/{pageNum}/{color?}/{categoryDescription?}", new { Controller = "Home", Action = "Index" });
 
 
@@ -180,40 +181,45 @@ namespace WinterIntex {
             app.MapControllerRoute("productCategory", "{categoryDescription}", new { Controller = "Home", Action = "Index", pageNum = 1 });
             app.MapControllerRoute("pagination", "Products/Page{pageNum}", new { Controller = "Home", Action = "Index", pageNum = 1 });
 
+            // Map  our defualt routes
             app.MapDefaultControllerRoute();
 
-            using (var scope = app.Services.CreateScope())
-            {
-                var roleManager =
-                    scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                var roles = new[] { "Admin", "Member" };
 
-                foreach (var role in roles)
-                {
-                    if (!await roleManager.RoleExistsAsync(role))
-                        await roleManager.CreateAsync(new IdentityRole(role));
-                }
-            }
-            // Roles
-            using (var scope = app.Services.CreateScope())
-            {
-                var userManager =
-                    scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-                string email = "admin@admin.com";
-                string password = "Test1234!@#$aaaaaaaaaa";
-                
-                if(await userManager.FindByEmailAsync(email) == null)
-                {
-                    var user = new IdentityUser();
-                    user.UserName = email;
-                    user.Email = email;
-                    user.EmailConfirmed = true;
 
-                    await userManager.CreateAsync(user, password);
+            // Code to seed the roles. Commented out so we don't leak our admin info 
+            //using (var scope = app.Services.CreateScope())
+            //{
+            //    var roleManager =
+            //        scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            //    var roles = new[] { "Admin", "Member" };
 
-                    await userManager.AddToRoleAsync(user, "Admin");
-                }
-            }
+            //    foreach (var role in roles)
+            //    {
+            //        if (!await roleManager.RoleExistsAsync(role))
+            //            await roleManager.CreateAsync(new IdentityRole(role));
+            //    }
+            //}
+
+            //using (var scope = app.Services.CreateScope())
+            //{
+            //    var userManager =
+            //        scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            //    string email = "********";
+
+            //    string password = "************";
+             
+            //    if(await userManager.FindByEmailAsync(email) == null)
+            //    {
+            //        var user = new IdentityUser();
+            //        user.UserName = email;
+            //        user.Email = email;
+            //        user.EmailConfirmed = true;
+
+            //        await userManager.CreateAsync(user, password);
+
+            //        await userManager.AddToRoleAsync(user, "Admin");
+            //    }
+            //}
 
             // Run that bad boy
             app.Run();

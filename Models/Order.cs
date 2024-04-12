@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static WinterIntex.Models.Cart;
 
+// Model for the Order table
+// Links with foreign key relationship to all of the linking tables
+
 namespace WinterIntex.Models
 {
     public class Order

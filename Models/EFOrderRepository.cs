@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+// EF Repository for the ORDERS interface
+
 namespace WinterIntex.Models
 {
     public class EFOrderRepository : IOrderRepository

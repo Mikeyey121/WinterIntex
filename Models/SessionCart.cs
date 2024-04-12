@@ -1,6 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 using WinterIntex.Infrastructure;
 
+// Model for the session cart 
+
 namespace WinterIntex.Models
 {
     public class SessionCart : Cart

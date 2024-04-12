@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
+// Model for user reccomendations
+// We run our model for user recommendations and post them to the database and then access it through this
 namespace WinterIntex.Models
 {
     public class UserRecommendations

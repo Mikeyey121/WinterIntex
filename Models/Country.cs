@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+// Model for the country table that links to any reference of country
+
 namespace WinterIntex.Models
 {
     public class Country

@@ -1,5 +1,5 @@
 ﻿namespace WinterIntex.Models
-// Interface for our repository
+// Interface for the PRODUCT repository
 {
     public interface IProductRepository
     {

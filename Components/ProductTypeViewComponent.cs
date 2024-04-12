@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore; // Required for .Include() and .ThenInclude
 using WinterIntex.Models;
 using System.Linq;
 
+// Component for the product type filter
 namespace WinterIntex.Components
 {
     public class ProductTypeViewComponent : ViewComponent

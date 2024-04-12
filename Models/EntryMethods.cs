@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 
+// Model for entrymethods which links to the order table
 namespace WinterIntex.Models
 {
     public class EntryMethods

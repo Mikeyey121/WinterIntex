@@ -7,11 +7,13 @@ using System.Security.Claims;
 using WinterIntex.Models;
 using WinterIntex.Models.ViewModels;
 
-
+// This is the home controller for most of the base functionality 
 namespace WinterIntex.Controllers
 {
     public class HomeController : Controller
     {
+
+        // Creating global variables for the repository pattern, products, and recommendations
         private IProductRepository _repo;
         public Product UserRec1 { get; set; } = new Product();
         public Product UserRec2 { get; set; } = new Product();
@@ -19,11 +21,14 @@ namespace WinterIntex.Controllers
         
         public string customer_ID { get; set; }
         public UserRecommendations UserRecommendations { get; set; } = new UserRecommendations();
+
+        // Constructor to instantiate the repo
         public HomeController(IProductRepository temp)
         {
             _repo = temp;
         }
         
+        // Get request to display the products page with all of the filters
         public IActionResult Products(int pageSizes = 10, int pageNum = 1, string? color = null, string? categoryDescription = null)
         {
             int pageSize = pageSizes;
@@ -59,9 +64,7 @@ namespace WinterIntex.Controllers
 
             };
 
-
-
-            var blah = new ProductsListViewModel
+            var productsLists = new ProductsListViewModel
             {
                 Products = productsQuery
                 .OrderBy(x => x.Name)
@@ -78,14 +81,16 @@ namespace WinterIntex.Controllers
 
             };
 
-            return View(blah);
+            return View(productsLists);
         }
 
-
+        // Get request for our privacy view
         public IActionResult Privacy()
         {
             return View();
         }
+
+        // Get request for our index page with functionality based on who is logged in
         public IActionResult Index()
         {
             var viewModel = new UserRecommendationsViewModel
@@ -125,21 +130,22 @@ namespace WinterIntex.Controllers
 
             }
             return View(viewModel);
-
-
-
         }
+
+        // Get request for the about page
         public IActionResult About()
         {
             return View();
         }
 
+        // Get request for the navigation to the admin pages and authorizing who can access it
         [Authorize(Roles = "Admin")]
         public IActionResult Admin()
         {
             return View();
         }
 
+        // Error view
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
