@@ -4,7 +4,7 @@
 
 @model Product
 @using WinterIntex.Models
-
+<section class="form-container" style="width:50%; margin-left:25%;margin-right:25%;">
 <form method="post" asp-action="ProductForm" class="container mt-5">
     <h2>Add a Record</h2>
     <input type="hidden" asp-for="Product_ID" value="@ViewBag.MaxProduct"/>
@@ -67,4 +67,4 @@
 
     <div asp-validation-summary="All" class="text-danger"></div>
 </form>
-
+</section>
