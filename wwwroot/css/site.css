@@ -167,3 +167,22 @@ body {
         color: #fff;
         background-color: #7D8E95;
     }
+
+
+.secondary-section {
+    background-color: #e9e9e9;
+    padding: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 15px 15px;
+}
+.form-container {
+    width: 50%; /* Adjust the width as necessary */
+    margin: 50px auto; /* Vertical spacing and horizontal auto margin centers the form */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border: 1px solid #ddd; /* Border for definition */
+}

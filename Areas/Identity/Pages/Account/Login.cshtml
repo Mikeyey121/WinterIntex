@@ -6,7 +6,7 @@
 }
 
 <div class="row">
-        <section class="form-container">
+        <section class="form-container" style="width:50%; margin-left:25%;margin-right:25%;">
             <form id="account" method="post">
                 <h2>Enter Credentials to Log in.</h2>
                 <hr />
@@ -28,7 +28,7 @@
                     </label>
                 </div>
                 <div>
-                <button id="login-submit" type="submit" class="btn-primary" >
+                <button id="login-submit" type="submit" class="btn-primary">
    
                     Log in
                 </button>
@@ -47,8 +47,8 @@
             </form>
         </section>
     </div>
-    <div class="row">
-        <section class="secondary-section">
+<div class="row" >
+    <section class="secondary-section" style="width:50%; margin-left:25%;margin-right:25%;">
             <h3>Log In With Google</h3>
             <hr />
             @{
@@ -63,7 +63,7 @@
                 }
                 else
                 {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-secondary">
                         <div>
                             <p>
                                 @foreach (var provider in Model.ExternalLogins!)
