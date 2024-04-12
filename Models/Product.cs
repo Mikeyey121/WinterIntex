@@ -7,8 +7,10 @@ namespace WinterIntex.Models
 {
     public class Product
     {
+     
         [Key]
         public string Product_ID { get; set; }
+
 
         [Required(ErrorMessage = "Please enter a product name")]
         public string Name { get; set; }
@@ -37,8 +39,11 @@ namespace WinterIntex.Models
         [Required(ErrorMessage = "Please specify a description of the product")]
         public string Description { get; set; }
 
-        public virtual Color PrimaryColor { get; set; }
-        public virtual Color SecondaryColor { get; set; }
-        public ICollection<CategoryProductOrder> CategoryProductOrders { get; set; }
+        public virtual Color? PrimaryColor { get; set; }
+        public virtual Color? SecondaryColor { get; set; }
+
+        public List<CategoryProductOrder>? CategoryProductOrders { get; set; }
+
+
     }
 }

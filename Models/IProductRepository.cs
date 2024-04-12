@@ -9,6 +9,7 @@
         
         public IQueryable<UserRecommendations> UserRecommendations { get; }
         public IQueryable<TopRecommendations> TopRecommendations { get; }
+        IQueryable<Color> Color { get; }
 
 
         void SaveProduct(Product p);

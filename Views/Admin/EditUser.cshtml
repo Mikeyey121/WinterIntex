@@ -1,0 +1,53 @@
+﻿@model IdentityUser
+@{
+    ViewBag.Title = "Edit User";
+}
+
+<h2>Edit User</h2>
+
+<form asp-action="EditUser" method="post">
+    <input type="hidden" asp-for="Id"  />
+
+    <div class="mb-3">
+        <label asp-for="UserName" class="form-label">Username:</label>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email:</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PhoneNumber" class="form-label">Phone Number:</label>
+        <input asp-for="PhoneNumber" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <div class="form-check">
+            <input asp-for="TwoFactorEnabled" class="form-check-input" />
+            <label asp-for="TwoFactorEnabled" class="form-check-label">Two-Factor Authentication Enabled</label>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div class="form-check">
+            <input asp-for="LockoutEnabled" class="form-check-input" />
+            <label asp-for="LockoutEnabled" class="form-check-label">Lockout Enabled</label>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LockoutEnd" class="form-label">Lockout End Date:</label>
+        <input asp-for="LockoutEnd" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="AccessFailedCount" class="form-label">Access Failed Count:</label>
+        <input asp-for="AccessFailedCount" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update User</button>
+</form>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
