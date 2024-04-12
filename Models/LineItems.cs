@@ -1,5 +1,6 @@
 ﻿namespace WinterIntex.Models
 {
+    // LineItems model
     public class LineItems
     {
             public int transaction_Id { get; set; }

@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+// Model for the customer table
+
 namespace WinterIntex.Models
 {
     public class Customer

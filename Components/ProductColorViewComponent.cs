@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WinterIntex.Models;
-using Microsoft.EntityFrameworkCore; // Required for .Include() and .ThenInclude()
+using Microsoft.EntityFrameworkCore;
 
-
+// This is the component for the product color filterd
 namespace WinterIntex.Components
 {
     public class ProductColorViewComponent :ViewComponent

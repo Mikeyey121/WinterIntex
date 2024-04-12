@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 // This is the model for the product table
 // This contains all of the columns for the table
-// It also has built in error messages to inform the user
+// It also has built in error messages for CLIENT VALIDATION
+
 namespace WinterIntex.Models
 {
     public class Product

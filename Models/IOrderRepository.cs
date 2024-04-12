@@ -1,5 +1,6 @@
 ﻿namespace WinterIntex.Models
 {
+    // Interface for the ORDER repository pattern
     public interface IOrderRepository
     {
         IQueryable<Order> Order { get; }

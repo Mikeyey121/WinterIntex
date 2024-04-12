@@ -8,18 +8,24 @@ using Microsoft.AspNetCore.Identity;
 using WinterIntex.Models.ViewModels;
 using System.Drawing;
 
+// This is the controller for all of the admin views
+
 namespace WinterIntex.Controllers
 {
+    // We require that the user be logged in as an admin in order to access these actions and views
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
+        // Creating global variables for the repository pattern, logger, and identity user manager
         private IProductRepository _repo;
         private IOrderRepository _oRepo;
         private readonly ILogger<AdminController> _logger;
         private readonly UserManager<IdentityUser> _userManager;
 
+        // Variable for enumerable of type product
         public IEnumerable<Product> CoolProduct { get; set; }
 
+        // Constructor to instantiate global variables
         public AdminController(IProductRepository temp, ILogger<AdminController> logger, IOrderRepository oRepo, UserManager<IdentityUser> userManager)
         {
             _repo = temp;
@@ -27,6 +33,8 @@ namespace WinterIntex.Controllers
             _oRepo = oRepo;
             _userManager = userManager;
         }
+
+        // Get request to display the products crud view
         public IActionResult Products()
         {
             // Query products including related categories
@@ -38,6 +46,7 @@ namespace WinterIntex.Controllers
             return View(CoolProduct);
         }
 
+        // Get request to display the fraudulent orders for the admin to review
         public IActionResult Orders()
         {
             var FraudOrders = _oRepo.Order.Where(x => x.Fraud == true)
@@ -45,14 +54,10 @@ namespace WinterIntex.Controllers
                 .OrderByDescending(x => x.Date)
             .ToList();
 
-   
-
                 return View(FraudOrders);
         }
-        public IActionResult Users()
-        {
-            return View();
-        }
+
+        // Get request for the product form 
         [HttpGet]
         public IActionResult ProductForm()
         {
@@ -62,6 +67,7 @@ namespace WinterIntex.Controllers
             return View(new Product());
         }
 
+        // Post request for the product form 
         [HttpPost]
         public IActionResult ProductForm(Product response)
         {
@@ -86,6 +92,7 @@ namespace WinterIntex.Controllers
 
         }
 
+        // Get request for the edit view which is used to edit products
         [HttpGet]
         public IActionResult Edit(string id)
         {
@@ -99,6 +106,8 @@ namespace WinterIntex.Controllers
                 .ToList();
             return View("ProductForm", record);
         }
+
+        // Post request to post our product edits to the databse
         [HttpPost]
         public IActionResult Edit(Product products)
         {
@@ -106,6 +115,7 @@ namespace WinterIntex.Controllers
             return RedirectToAction("Products");
         }
 
+        // Get request for the delete product confirmation screen 
         [HttpGet]
         public IActionResult Delete(string id)
         {
@@ -114,6 +124,8 @@ namespace WinterIntex.Controllers
 
             return View("ProductDelete",record);
         }
+
+        // Post request to actually delete a product
         [HttpPost]
         public IActionResult Delete(Product delete)
         {
@@ -123,7 +135,7 @@ namespace WinterIntex.Controllers
             return RedirectToAction("Products");
         }
 
-
+        // Get request for the form to create a product
         [HttpGet]
         public IActionResult ProductCreate()
         {
@@ -137,7 +149,8 @@ namespace WinterIntex.Controllers
             ViewBag.MaxProduct = maxProduct;
             return View();
         }
-        // Get method for viewing the users
+
+        // Get method for viewing the users to perform crud functionality 
         [HttpGet]
         public IActionResult ListUsers()
         {
@@ -159,7 +172,6 @@ namespace WinterIntex.Controllers
         }
 
         // Post method for editing a user
-
         [HttpPost]
         public async Task<IActionResult> EditUser(IdentityUser user)
         {
@@ -182,7 +194,8 @@ namespace WinterIntex.Controllers
 
             return RedirectToAction("ListUsers",users);
         }
-        // Get method for deleting a user 
+
+        // Get method to confirm deleting a user 
         [HttpGet]
         public async Task<IActionResult> UserDelete(string id)
         {
@@ -201,7 +214,7 @@ namespace WinterIntex.Controllers
             return View(model);
         }
 
-        // Post method for deleting a user
+        // Post method for deleting a user in the database. 
         [HttpPost]
         public async Task<IActionResult> UserDeleteConfirmed(string id)
         {

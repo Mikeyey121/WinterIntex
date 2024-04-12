@@ -1,5 +1,6 @@
 ﻿namespace WinterIntex.Models
 {
+    // EF Repository for the PRODUCT interface
     public class EFProductRepository : IProductRepository
     {
         // Creating a private variable of type Context file

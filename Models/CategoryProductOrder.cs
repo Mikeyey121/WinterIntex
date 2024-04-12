@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+// Model for the linking table between orders and categories
+
 namespace WinterIntex.Models
 {
     public class CategoryProductOrder

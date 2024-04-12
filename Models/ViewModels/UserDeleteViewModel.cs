@@ -1,4 +1,6 @@
-﻿namespace WinterIntex.Models.ViewModels
+﻿// View model for the user deletion
+
+namespace WinterIntex.Models.ViewModels
 {
     public class UserDeleteViewModel
     {

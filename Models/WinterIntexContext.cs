@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+
+// Context file for the app
+
 namespace WinterIntex.Models
 {
     public class WinterIntexContext : DbContext

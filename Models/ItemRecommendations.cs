@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+// Item recommendation model
+// We push the item recommendations to the database and access them on the page through this model
+
 namespace WinterIntex.Models
 {
     public class ItemRecommendations

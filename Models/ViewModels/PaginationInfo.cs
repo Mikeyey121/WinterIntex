@@ -1,4 +1,6 @@
-﻿namespace WinterIntex.Models.ViewModels
+﻿// View Model for the pagination info
+
+namespace WinterIntex.Models.ViewModels
 {
     public class PaginationInfo
     {
