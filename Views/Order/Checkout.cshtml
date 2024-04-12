@@ -1,4 +1,5 @@
-﻿
+﻿<!-- Checkout page for customer to input their information -->
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -7,6 +8,7 @@
 @model Order
 @using System.Security.Claims;
 
+<!-- Heading -->
 <h2 style="width:50%; margin-left:25%;margin-right:25%;">Confirm Order Details</h2>
 @if (!ViewData.ModelState.IsValid)
 {
@@ -22,6 +24,8 @@
         </ul>
     </div>
 }
+
+<!-- Checkout form -->
 <section class="form-container" style="width:50%; margin-left:25%;margin-right:25%;">
 <form asp-action="Checkout" method="post">
     <h3>Checkout</h3>

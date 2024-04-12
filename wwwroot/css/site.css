@@ -1,40 +1,49 @@
+/* Set base font size for the page */
 html {
     font-size: 14px;
 }
 
+/* Media query for larger screens to adjust font size */
 @media (min-width: 768px) {
     html {
         font-size: 16px;
     }
 }
 
+/* Styling for focus states on various elements */
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+/* Set base styles for the body */
 html {
     position: relative;
     min-height: 100%;
 }
 
+/* Apply margin to the bottom of the body */
 body {
     margin-bottom: 60px;
 }
 
+/* Custom background color class */
 .bg-blue {
     background-color: #7D8E95 !important;
 }
 
+/* Custom background color class */
 .bg-black {
     background-color: #FFBB98 !important;
 }
 
+/* Font family and color for heading elements */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Raleway';
     src: url('~/fonts/Raleway-Regular.ttf') format('truetype');
     color: #344648
 }
 
+/* Styling for navigation elements */
 nav {
     font-family: 'Raleway';
     src: url('~/fonts/Raleway-Regular.ttf') format('truetype');
@@ -46,53 +55,62 @@ nav {
     width: 300px;
 }
 
+/* Styling for card header */
 .card-header {
     background-color: white;
 }
 
+/* Styling for image wrapper within cards */
 .img-wrapper {
     background-color: white;
     padding: 0 20px; /* Adjust padding as needed */
 }
 
+/* Styling for card footer */
 .card-footer {
     background-color: white;
 }
 
-    /* CSS for buttons inside the card-footer */
+    /* Styling for buttons inside card footer */
     .card-footer button {
         margin-right: 5px; /* Adjust spacing between buttons */
     }
 
+/* Styling for a specific button class */
 .btn-view-details {
     color: #F2CD37; /* Set text color */
     border-color: #F2CD37; /* Set border color */
 }
 
+    /* Hover effect for specific button class */
     .btn-view-details:hover {
         color: #fff; /* Change text color on hover */
         background-color: #F2CD37; /* Change background color on hover */
         border-color: #F2CD37; /* Change border color on hover */
     }
 
+/* Styling for price badge */
 .badge-price {
     background-color: #F2CD37; /* Set background color */
     color: #fff; /* Set text color */
 }
 
+    /* Styling for small text inside price badge */
     .badge-price small {
         color: #fff; /* Set text color for small text inside the span */
     }
 
+/* Base styles for body */
 body {
     background-color: #F7F4EF; /* Off-white background color */
     color: #000000; /* Black text color */
 }
 
+/* Styling for primary button */
 .btn-primary {
     color: #fff;
-    background-color: #FFBB98; /* Bootstrap's btn-primary blue color */
-    border-color: #FFBB98; /* Bootstrap's btn-primary blue color */
+    background-color: #FFBB98; /* Button background color */
+    border-color: #FFBB98; /* Button border color */
     font-size: 1.25rem;
     border-radius: 10px;
     font-family: 'Raleway', sans-serif;
@@ -100,26 +118,31 @@ body {
     border: 2px solid transparent;
 }
 
+    /* Hover effect for primary button */
     .btn-primary:hover {
         background-color: white;
-        color: #FFBB98; /* Bootstrap's btn-primary blue color */
-        border-color: #FFBB98; /* Bootstrap's btn-primary blue color */
+        color: #FFBB98; /* Button text color on hover */
+        border-color: #FFBB98; /* Button border color on hover */
     }
 
+/* Styling for scrollable cards container */
 .scrollable-cards-container {
     overflow-x: auto;
 }
 
+/* Styling for row of scrollable cards */
 .scrollable-cards-row {
     display: inline-flex;
 }
 
+    /* Styling for columns within scrollable card row */
     .scrollable-cards-row .col-md-4 {
         flex: 0 0 auto;
         width: calc(100% / 3); /* Adjust based on your desired width */
         max-width: calc(100% / 3); /* Adjust based on your desired width */
     }
 
+/* Styling for grid card */
 .grid-card {
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -131,6 +154,7 @@ body {
     background-color: #fff;
 }
 
+/* Styling for secondary button */
 .btn-secondary {
     color: #fff;
     background-color: #7D8E95;
@@ -147,13 +171,14 @@ body {
     align-items: center; /* Vertically center content */
 }
 
-
+    /* Hover effect for secondary button */
     .btn-secondary:hover {
         background-color: white;
         color: #7D8E95;
         border-color: #7D8E95;
     }
 
+/* Styling for back button */
 .btn-back {
     padding: 5px 10px;
     font-size: 14px;
@@ -163,12 +188,13 @@ body {
     border-color: #7D8E95;
 }
 
+    /* Hover effect for back button */
     .btn-back:hover {
         color: #fff;
         background-color: #7D8E95;
     }
 
-
+/* Styling for secondary section */
 .secondary-section {
     background-color: #e9e9e9;
     padding: 20px;
@@ -178,6 +204,8 @@ body {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 1px 0 rgba(255, 255, 255, 0.1);
     border-radius: 0 0 15px 15px;
 }
+
+/* Styling for form container */
 .form-container {
     width: 50%; /* Adjust the width as necessary */
     margin: 50px auto; /* Vertical spacing and horizontal auto margin centers the form */
@@ -187,19 +215,18 @@ body {
     border: 1px solid #ddd; /* Border for definition */
 }
 
+/* Base layout styles */
 body {
     flex-direction: column;
     min-height: 100vh; /* Ensures the body takes up at least the full viewport height */
 }
 
+/* Styling for footer */
 .footer {
     background-color: #FFBB98; /* Set the background color to FFBB98 */
 }
 
-
-
-
-/*TABLE STYLES*/
+/* TABLE STYLES */
 /* General styling for the table */
 table {
     border-collapse: collapse;
@@ -239,7 +266,7 @@ tr:hover {
     background-color: #f5f5f5; /* Light grey background for hover */
 }
 
-/* Styling for the 'Create a Product' button */
+/* Styling for 'Create a Product' button */
 .create-button {
     background-color: #FFBB98; /* Peach background for the button */
     color: white; /* White text for the button */
@@ -252,12 +279,13 @@ tr:hover {
     text-decoration: none; /* In case it's a link */
 }
 
+    /* Hover effect for 'Create a Product' button */
     .create-button:hover {
         background-color: white; /* Slightly white on hover */
-        color:#FFBB98;
+        color: #FFBB98;
     }
 
-/* Styling for the 'Edit' and 'Delete' buttons */
+/* Styling for 'Edit' and 'Delete' buttons */
 .edit-button, .delete-button {
     border: none;
     padding: 5px 10px;
@@ -320,7 +348,7 @@ tr:hover {
         }
 }
 
-/* Base layout styles */
+/* Base layout styles for admin panel */
 .admin-panel {
     display: flex;
     flex-direction: column;
@@ -329,12 +357,13 @@ tr:hover {
     min-height: 100vh;
 }
 
+/* Styles for admin panel headings */
 h1 {
     color: #333;
     margin-bottom: 30px;
 }
 
-/* Button styles */
+/* Styles for admin panel buttons */
 .admin-buttons {
     display: flex;
     justify-content: center;
@@ -342,6 +371,7 @@ h1 {
     max-width: 1200px; /* Maximum width of the button container */
 }
 
+/* Styles for admin panel button */
 .admin-button {
     background-color: #C91A09; /* Button color */
     color: white; /* Button text color */
@@ -355,13 +385,14 @@ h1 {
     transition: background-color 0.3s, transform 0.3s; /* Smooth transitions for hover effects */
 }
 
+    /* Hover effect for admin panel button */
     .admin-button:hover {
         background-color: #A51707; /* Darker shade for hover */
         transform: translateY(-2px); /* Slight raise on hover */
         box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
     }
 
-/* Responsive adjustments */
+/* Responsive adjustments for admin panel */
 @media (max-width: 768px) {
     .admin-buttons {
         flex-direction: column; /* Stack buttons vertically on smaller screens */

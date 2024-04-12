@@ -98,7 +98,10 @@ namespace WinterIntex {
 
             // Memory Cache and Session configuration for session
             builder.Services.AddDistributedMemoryCache();
-            builder.Services.AddSession();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20); // This is so that we can prevent session hijacking!
+            });
 
             // Configuration for server side blazor apps
             builder.Services.AddServerSideBlazor();
@@ -112,6 +115,7 @@ namespace WinterIntex {
             // Add the connection to the IHttpContextAccessor so we can use the current session for each user
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            
             // Setting app to builder.Build
             var app = builder.Build();
 
@@ -149,6 +153,8 @@ namespace WinterIntex {
             // Configure for routing
             app.UseRouting();
 
+            
+
             // Configure for HSTS
             if (!app.Environment.IsDevelopment())
             {
@@ -179,6 +185,7 @@ namespace WinterIntex {
             app.MapDefaultControllerRoute();
 
 
+
             // Code to seed the roles. Commented out so we don't leak our admin info 
             //using (var scope = app.Services.CreateScope())
             //{
@@ -198,8 +205,9 @@ namespace WinterIntex {
             //    var userManager =
             //        scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
             //    string email = "********";
+
             //    string password = "************";
-                
+             
             //    if(await userManager.FindByEmailAsync(email) == null)
             //    {
             //        var user = new IdentityUser();

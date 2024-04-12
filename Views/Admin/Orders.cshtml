@@ -1,10 +1,15 @@
-﻿@{
+﻿<!-- Admin view that shows all fraudulent orders -->
+
+<!-- Import admin layout -->
+@{
     Layout = "_AdminLayout";
 }
 @model IEnumerable<Order>
 
-
+<!-- Heading -->
 <h3>Orders That Are Predicted to be Fradulent</h3>
+
+<!-- Orders table -->
 <table class="table table-bordered">
     <thead class="fw-bold">
         <tr>

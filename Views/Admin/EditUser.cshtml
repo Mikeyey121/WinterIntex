@@ -1,10 +1,14 @@
-﻿@model IdentityUser
+﻿<!-- View for an admin to edit user accounts -->
+@model IdentityUser
 @{
     ViewBag.Title = "Edit User";
 }
 
+<!-- Heading -->
 <h2>Edit User</h2>
 <section class="form-container" style="width:50%; margin-left:25%;margin-right:25%;">
+
+<!-- Form to edit user -->
 <form asp-action="EditUser" method="post">
     <input type="hidden" asp-for="Id"  />
 

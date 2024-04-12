@@ -1,19 +1,28 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿<!-- Admin view that shows a list of all user accounts and allows for CRUD -->
+
+@using Microsoft.AspNetCore.Identity;
 
 @model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
 
+<!-- View bag to load in users-->
 @{
     ViewBag.Title = "All Users";
 }
 @if (Model.Any())
 {   <div class="row">
+
+        <!-- Heading -->
         <h1 class="col-2">All Users</h1>
 
+
         <a asp-area="Identity" asp-page="/Account/Login"
+
        class="create-button col-4" style="width:auto">
         Add New User
     </a>
     </div>
+
+    <!-- User table -->
     foreach (var user in Model)
     {
         <div class="card mb-3">
