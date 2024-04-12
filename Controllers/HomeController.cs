@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Drawing;
+using System.Security.Claims;
 using WinterIntex.Models;
 using WinterIntex.Models.ViewModels;
 
@@ -11,15 +13,20 @@ namespace WinterIntex.Controllers
     public class HomeController : Controller
     {
         private IProductRepository _repo;
-
+        public Product UserRec1 { get; set; } = new Product();
+        public Product UserRec2 { get; set; } = new Product();
+        public Product UserRec3 { get; set; } = new Product();
+        
+        public string customer_ID { get; set; }
+        public UserRecommendations UserRecommendations { get; set; } = new UserRecommendations();
         public HomeController(IProductRepository temp)
         {
             _repo = temp;
         }
-
-        public IActionResult Products(string? categoryDescription = null,int pageNum = 1, string? color = null)
+        
+        public IActionResult Products(int pageSizes = 10, int pageNum = 1, string? color = null, string? categoryDescription = null)
         {
-            int pageSize = 10;
+            int pageSize = pageSizes;
 
             IQueryable<Product> productsQuery = _repo.Products
             .Include(p => p.CategoryProductOrders) // Include the join table
@@ -81,14 +88,53 @@ namespace WinterIntex.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var viewModel = new UserRecommendationsViewModel
+            {
+                IsAuthenticated = User.Identity.IsAuthenticated
+            };
+
+
+            if (viewModel.IsAuthenticated)
+            {
+                // Mhutch customer id 218756d3-239e-46e6-a9f7-8b0c4c72fc2b is on row 13198
+                string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                viewModel.UserRecommendations = _repo.UserRecommendations.FirstOrDefault(x => x.customer_ID == userId);
+
+                var recommendation1Id = viewModel.UserRecommendations.Recommendation_1;
+                var product1 = _repo.Products.FirstOrDefault(x => x.Product_ID == recommendation1Id);
+
+
+                viewModel.RecommendedProducts.Add(product1);
+                viewModel.RecommendedProducts.Add(_repo.Products.FirstOrDefault(x => x.Product_ID == viewModel.UserRecommendations.Recommendation_2));
+                viewModel.RecommendedProducts.Add(_repo.Products.FirstOrDefault(x => x.Product_ID == viewModel.UserRecommendations.Recommendation_3));
+                viewModel.RecommendedProducts.Add(_repo.Products.FirstOrDefault(x => x.Product_ID == viewModel.UserRecommendations.Recommendation_4));
+                viewModel.RecommendedProducts.Add(_repo.Products.FirstOrDefault(x => x.Product_ID == viewModel.UserRecommendations.Recommendation_5));
+
+
+            }
+            else
+            {
+
+
+                foreach (var r in _repo.TopRecommendations)
+                {
+                    viewModel.TopRecommendations.Add(new TopRecommendations { Product_ID = r.Product_ID, Average_Rating = r.Average_Rating });
+                    viewModel.RecommendedProducts.Add(_repo.Products.FirstOrDefault(x => x.Product_ID == r.Product_ID));
+
+                }
+
+            }
+            return View(viewModel);
+
+
+
         }
         public IActionResult About()
         {
             return View();
         }
 
-        //[Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Admin()
         {
             return View();

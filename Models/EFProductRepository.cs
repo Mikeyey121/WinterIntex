@@ -15,6 +15,11 @@
         public IQueryable<Product> Products => _context.Products;
         public IQueryable<ItemRecommendations> ItemRecommendations => _context.ItemRecommendations;
 
+        public IQueryable<UserRecommendations> UserRecommendations => _context.UserRecommendations;
+        public IQueryable<TopRecommendations> TopRecommendations => _context.TopRecommendations;
+        public IQueryable<Color> Color => _context.Color;
+
+
         // Method to create a product
         public void CreateProduct(Product p)
         {
@@ -32,6 +37,7 @@
         // Method to save changes for a product
         public void SaveProduct(Product p)
         {
+            _context.Update(p);
             _context.SaveChanges();
         }
     }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WinterIntex.Pages
 {
-    public class CompletedModel : PageModel
+    public class FraudCompletedModel : PageModel
     {
         [Authorize]
         public void OnGet()

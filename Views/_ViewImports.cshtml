@@ -3,5 +3,10 @@
 @using WinterIntex.Models.ViewModels;
 @using WinterIntex.Infrastructure;
 
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, WinterIntex

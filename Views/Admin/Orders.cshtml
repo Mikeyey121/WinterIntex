@@ -1,4 +1,32 @@
 ﻿@{
     Layout = "_AdminLayout";
 }
-<h4>This is the orders component</h4>
+@model IEnumerable<Order>
+
+
+<h3>Orders That Are Predicted to be Fradulent</h3>
+<table class="table table-bordered">
+    <thead class="fw-bold">
+        <tr>
+            <th>Customer Name</th>
+            <th>Date of Order</th>
+            <th>Amount</th>
+            <th>Fraud</th>
+        
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Customers.first_name</td>
+                <td>@(order.Date.HasValue ? order.Date.Value.ToString("MM-yyyy-dd") : "N/A")</td>
+                <td>@(order.Amount.HasValue ? order.Amount.Value.ToString("C") : "N/A")</td>
+                <td>@order.Fraud</td>
+      
+
+            </tr>
+        }
+    </tbody>
+</table>

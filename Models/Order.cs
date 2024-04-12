@@ -9,10 +9,11 @@ namespace WinterIntex.Models
     {
         [Key]
         public int transaction_ID { get; set; }
-        public int customer_ID { get; set; }
+        [ForeignKey("Customers")]
+        public string customer_ID { get; set; }
 
         [Required(ErrorMessage = "Date is required")]
-        public string? Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [Required(ErrorMessage = "Day of week is required")]
         public int? Day_Of_Week { get; set; }
@@ -26,7 +27,7 @@ namespace WinterIntex.Models
 
 
         [Required(ErrorMessage = "Amount is required")]
-        public int? Amount { get; set; }
+        public decimal? Amount { get; set; }
 
 
         [Required(ErrorMessage = "Transaction types is required")]
@@ -51,9 +52,10 @@ namespace WinterIntex.Models
         [Required(ErrorMessage = "TypeofCard is required")]
         [ForeignKey("CardTypes")]
         public int? Type_Of_Card { get; set; }
-        public bool Fraud { get; set; } = false;
+        public bool Fraud { get; set; }
 
         // Foreign key connections
+        public virtual Customer? Customers { get; set; }
         public virtual EntryMethods? EntryMethods { get; set; }
         public virtual TransactionTypes? TransactionTypes { get; set; }
         public virtual Country? Country { get; set; }
