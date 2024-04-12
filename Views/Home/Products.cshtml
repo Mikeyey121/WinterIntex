@@ -15,9 +15,9 @@
         <div class="col-lg-3">
 
             <!-- Color filter -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <h6>Product Type</h6>
+            <div class="card mb-3" style="border-radius:15px">
+                <div>
+                    <h6 style="margin:15px;">Product Type</h6>
                 </div>
                 <div class="card-body">
                     @await Component.InvokeAsync("ProductType")
@@ -25,9 +25,9 @@
             </div>
 
             <!-- Category filter -->
-            <div class="card">
-                <div class="card-header">
-                    <h6>Product Color</h6>
+            <div class="card" style="border-radius:15px">
+                <div >
+                    <h6 style="margin:15px;">Product Color</h6>
                 </div>
                 <div class="card-body">
                     @await Component.InvokeAsync("ProductColor")
@@ -35,12 +35,13 @@
             </div>
 
             <!-- Page size filters -->
-            <div class="card mt-3">
-                <div class="card-header">
-                    <h6>Page Size</h6>
+            <div class="card mt-3" style="border-radius:15px">
+                <div >
+                    <h6 style="margin:15px;">Page Size</h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
+                        <div class="col-2">
                         <form method="get" asp-controller="Home" asp-action="Products">
                             <input type="hidden" name="pageSizes" value="5" />
                             <input type="hidden" name="pageNum" value="1" />
@@ -48,6 +49,8 @@
                             <input type="hidden" name="categoryDescription" value="@Context.Request.Query["categoryDescription"]" />
                             <button class="btn @("5" == Context.Request.Query["pageSizes"] ? "btn-primary": "btn-outline-secondary")" type="submit">5</button>
                         </form>
+                        </div>
+                        <div class="col-2">
                         <form method="get" asp-controller="Home" asp-action="Products">
                             <input type="hidden" name="pageSizes" value="10" />
                             <input type="hidden" name="pageNum" value="1" />
@@ -55,6 +58,8 @@
                             <input type="hidden" name="categoryDescription" value="@Context.Request.Query["categoryDescription"]" />
                             <button class="btn @("10" == Context.Request.Query["pageSizes"] ? "btn-primary": "btn-outline-secondary")" type="submit">10</button>
                         </form>
+                        </div>
+                        <div class="col-2">
                         <form method="get" asp-controller="Home" asp-action="Products">
                             <input type="hidden" name="pageSizes" value="20" />
                             <input type="hidden" name="pageNum" value="1" />
@@ -62,6 +67,7 @@
                             <input type="hidden" name="categoryDescription" value="@Context.Request.Query["categoryDescription"]" />
                             <button class="btn @("20" == Context.Request.Query["pageSizes"] ? "btn-primary": "btn-outline-secondary")" type="submit">20</button>
                         </form>
+                        </div>
                     </div>
                 </div>
             </div>
