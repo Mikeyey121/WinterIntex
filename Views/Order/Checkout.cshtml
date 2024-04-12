@@ -7,8 +7,7 @@
 @model Order
 @using System.Security.Claims;
 
-<h2>Check out now</h2>
-<p>Please enter your details, and we'll ship your goods right away!</p>
+<h2 style="width:50%; margin-left:25%;margin-right:25%;">Confirm Order Details</h2>
 @if (!ViewData.ModelState.IsValid)
 {
     <div class="alert alert-danger">
@@ -23,9 +22,9 @@
         </ul>
     </div>
 }
-
+<section class="form-container" style="width:50%; margin-left:25%;margin-right:25%;">
 <form asp-action="Checkout" method="post">
-    <h3>Order Details:</h3>
+    <h3>Checkout</h3>
  
     <input type="hidden" value="@(ViewBag.MaxTransaction + 1)" asp-for="transaction_ID" class="form-control" />
     <span asp-validation-for="transaction_ID" class="text-danger"></span>
@@ -51,11 +50,10 @@
     <input type="hidden" asp-for="Fraud" value="false" class="form-control" />
      <span asp-validation-for="Fraud" class="text-danger"></span>
     
-    <div>This is the epic prediction: @ViewBag.Prediction</div>
 
     <br />
     <div class="form-group">
-        <label for="Entry_Mode">Entry Mode (0-2):</label>
+        <label for="Entry_Mode">Card Validation:</label>
         <select asp-for="Entry_Mode" class="form-control" id="Entry_Mode">
             <option value="">Select an Entry Mode</option>
             @foreach (var entryMethod in ViewBag.EntryMethods)
@@ -129,3 +127,4 @@
     </div>
 
 </form>
+</section>
