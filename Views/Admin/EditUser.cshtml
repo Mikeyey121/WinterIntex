@@ -4,7 +4,7 @@
 }
 
 <h2>Edit User</h2>
-
+<section class="form-container" style="width:50%; margin-left:25%;margin-right:25%;">
 <form asp-action="EditUser" method="post">
     <input type="hidden" asp-for="Id"  />
 
@@ -49,5 +49,5 @@
 
     <button type="submit" class="btn btn-primary">Update User</button>
 </form>
-
+</section>
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
