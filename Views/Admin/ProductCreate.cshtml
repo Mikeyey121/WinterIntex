@@ -1,4 +1,6 @@
-﻿@*
+﻿<!-- Admin view with form to create new products -->
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
@@ -6,9 +8,12 @@
 @using WinterIntex.Models
 <section class="form-container" style="width:50%; margin-left:25%;margin-right:25%;">
 <form method="post" asp-action="ProductForm" class="container mt-5">
+
+    <!-- Heading -->
     <h2>Add a Record</h2>
     <input type="hidden" asp-for="Product_ID" value="@ViewBag.MaxProduct"/>
 
+    <!-- Form to add a new product -->
     <div class="mb-3">
         <label asp-for="Primary_Color" class="form-label">Primary Color:</label>
         <select asp-for="Primary_Color" class="form-select">

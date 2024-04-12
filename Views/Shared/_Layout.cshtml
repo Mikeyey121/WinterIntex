@@ -1,5 +1,9 @@
-﻿<!DOCTYPE html>
+﻿<!--Shared layout for the entire site with nav bar and footer -->
+
+<!DOCTYPE html>
 <html lang="en">
+
+<!-- Head with css and font links for site -->
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,6 +18,8 @@
 
 </head>
 <body>
+
+    <!-- Nav bar -->
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color:#FFBB98">
             <div class="container-fluid">
@@ -51,16 +57,19 @@
         </nav>
     </header>
 
-
+    <!-- Render body -->
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
 
+    <!-- Footer with privacy policy -->
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - Aurora's LEGO Shop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+    <!-- JavaScript files -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

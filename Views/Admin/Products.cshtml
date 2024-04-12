@@ -1,14 +1,18 @@
-﻿@model IEnumerable<Product>
+﻿<!-- Admin view with tabel of products -->
+@model IEnumerable<Product>
 
+<!-- Import admin layout -->
 @{
     Layout = "_AdminLayout";
 }
 
+<!-- Button to create a product -->
 <div class="row">
 <a class="create-button col-2" asp-controller="Admin" asp-action="ProductCreate">Create a Product</a>
 </div>
 
 
+<!-- Table of products -->
 <table class="table table-bordered">
     <thead class="fw-bold">
         <tr>
