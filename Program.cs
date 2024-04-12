@@ -136,7 +136,7 @@ namespace WinterIntex {
             {
                 context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; connect-src 'self' http://localhost:* ws://localhost:*; " +
                     "img-src 'self' https://m.media-amazon.com/images/ https://www.lego.com/cdn/ https://images.brickset.com/sets/ https://www.brickeconomy.com/resources/images/sets/ data:; " +
-                    "script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com");
+                    "script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/ https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css https://fonts.gstatic.com ; font-src 'self' https://fonts.gstatic.com data:");
 
                 await next();
             });
