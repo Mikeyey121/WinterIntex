@@ -68,17 +68,15 @@
         </div>
 
         <!-- Product Cards -->
-        <div class="col-lg-9">
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-                @foreach (Product p in Model.Products)
-                {
-                    <div class="row mb-3">
-                        <div class="col-lg-6">
-                            <partial name="ProductSummary" model="p" />
-                        </div>
-                    </div>
-                }
+ <div class="col-lg-9">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (Product p in Model.Products)
+        {
+            <div class="col-md-4 mb-3">
+                <partial name="ProductSummary" model="p" />
             </div>
+        }
+    </div>
 
             <!-- Pagination -->
             <div page-model="@Model.PaginationInfo" page-action="Products" page-classes-enabled="true" page-class="btn"
