@@ -187,3 +187,12 @@ body {
     border: 1px solid #ddd; /* Border for definition */
 }
 
+body {
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the body takes up at least the full viewport height */
+}
+
+.footer {
+    background-color: #FFBB98; /* Set the background color to FFBB98 */
+}
+

@@ -34,6 +34,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
+                        <li class="nav-item">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Admin">Admin</a>
+                            }
+                        </li>
                     </ul>
                     <div class="col-6 navbar-text text-end">
                         <vc:cart-summary />
@@ -52,12 +58,6 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - Aurora's LEGO Shop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            @if (User.IsInRole("Admin"))
-            {
-                <div>
-                    - <a asp-area="" asp-controller="Home" asp-action="Admin">Admin</a>
-                </div>
-            }
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
