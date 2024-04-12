@@ -202,15 +202,15 @@ table {
 /* Table header styling */
 th {
     background-color: #FFBB98; /* Peach color */
-    color: white; /* White text for contrast */
-    font-weight: normal;
+    color: black; /* White text for contrast */
+    font-weight: bold;
     padding: 10px;
     text-align: left;
 }
 
 /* Table row and cell styling */
 td {
-    padding: 10px;
+    padding: 15px;
     text-align: left;
     border-bottom: 1px solid #f0f0f0; /* Light line for separating rows */
 }
@@ -231,7 +231,7 @@ tr:hover {
 
 /* Styling for the 'Create a Product' button */
 .create-button {
-    background-color: #4CAF50; /* Green background for the button */
+    background-color: #FFBB98; /* Peach background for the button */
     color: white; /* White text for the button */
     padding: 10px 20px;
     border: none;
@@ -243,7 +243,8 @@ tr:hover {
 }
 
     .create-button:hover {
-        background-color: #45a049; /* Slightly darker green on hover */
+        background-color: white; /* Slightly white on hover */
+        color:#FFBB98;
     }
 
 /* Styling for the 'Edit' and 'Delete' buttons */
