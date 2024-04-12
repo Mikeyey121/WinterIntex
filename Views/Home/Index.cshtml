@@ -23,7 +23,6 @@
                 <img src="~/img/giphy (1).gif" alt="LEGO Batman gif" class="img-fluid" style="max-width: 100%;">
             </div>
         </div>
-        <h3>Aurora's recommendations for you:</h3>
         
     </div>
 </div>
@@ -33,43 +32,48 @@
 <div class="text-center">
     @if (User.Identity.IsAuthenticated)
     {
-        @foreach (var recProduct in Model.RecommendedProducts)
-        {
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <img src="@recProduct.img_Link" class="card-img-top" alt="@recProduct.Name recommendation for the logged in user">
-                    <div class="card-body">
-                        <h5 class="card-title">@recProduct.Name</h5>
-                        <form id="@recProduct.Product_ID" method="get" asp-page="/ProductDetails">
-                             <input type="hidden" asp-for="Product_ID" value="@recProduct.Product_ID" />
-                             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                            <button type="submit" class="btn btn-outline-success btn-sm">View Details</button>
-                        </form>
+        <h3>Aurora's Recommendations for You</h3>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="scrollable-cards-container">
+                    <div class="scrollable-cards-row">
+                        @foreach (var recProduct in Model.RecommendedProducts)
+                        {
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <partial name="ProductSummary" model="recProduct" />
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
-        }
+        </div>
     }
     else
     {
-        @foreach (var recProduct in Model.RecommendedProducts)
-        {
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <img src="@recProduct.img_Link" class="card-img-top" alt="@recProduct.Name recommendation for the logged in user">
-                    <div class="card-body">
-                        <h5 class="card-title">@recProduct.Name</h5>
-                        <form id="@recProduct.Product_ID" method="get" asp-page="/ProductDetails">
-                            <input type="hidden" asp-for="Product_ID" value="@recProduct.Product_ID" />
-                            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                            <button type="submit" class="btn btn-outline-success btn-sm">View Details</button>
-                        </form>
+        <h3>Best Sellers</h3>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="scrollable-cards-container">
+                    <div class="scrollable-cards-row">
+                        @foreach (var recProduct in Model.RecommendedProducts)
+                        {
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <partial name="ProductSummary" model="recProduct" />
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
-        }
+        </div>
     }
 </div>
+
+
+
 
 
 

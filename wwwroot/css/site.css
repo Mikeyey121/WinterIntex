@@ -90,8 +90,8 @@ body {
 
 .btn-primary {
     color: #fff;
-    background-color: #F2CD37;
-    border-color: #F2CD37;
+    background-color: #007bff; /* Bootstrap's btn-primary blue color */
+    border-color: #007bff; /* Bootstrap's btn-primary blue color */
     font-size: 1.25rem;
     border-radius: 10px;
     font-family: 'Saira Condensed', sans-serif;
@@ -101,9 +101,27 @@ body {
 
     .btn-primary:hover {
         background-color: white;
-        color: #F2CD37;
-        border-color: #F2CD37;
+        color: #007bff; /* Bootstrap's btn-primary blue color */
+        border-color: #007bff; /* Bootstrap's btn-primary blue color */
     }
+
+.scrollable-cards-container {
+    overflow-x: auto;
+}
+
+.scrollable-cards-row {
+    display: inline-flex;
+}
+
+    .scrollable-cards-row .col-md-4 {
+        flex: 0 0 auto;
+        width: calc(100% / 3); /* Adjust based on your desired width */
+        max-width: calc(100% / 3); /* Adjust based on your desired width */
+    }
+
+
+
+
 
 
 
