@@ -196,3 +196,126 @@ body {
     background-color: #FFBB98; /* Set the background color to FFBB98 */
 }
 
+
+
+
+/*TABLE STYLES*/
+/* General styling for the table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 8px; /* Rounded corners for the table */
+    overflow: hidden; /* Ensures the border-radius is respected */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Table header styling */
+th {
+    background-color: #FFBB98; /* Peach color */
+    color: black; /* White text for contrast */
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Table row and cell styling */
+td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0; /* Light line for separating rows */
+}
+
+/* Header cells (first row) rounded */
+th:first-child {
+    border-top-left-radius: 8px;
+}
+
+th:last-child {
+    border-top-right-radius: 8px;
+}
+
+/* Hover effect for rows */
+tr:hover {
+    background-color: #f5f5f5; /* Light grey background for hover */
+}
+
+/* Styling for the 'Create a Product' button */
+.create-button {
+    background-color: #FFBB98; /* Peach background for the button */
+    color: white; /* White text for the button */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px; /* Rounded corners for the button */
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px; /* Space below the button */
+    text-decoration: none; /* In case it's a link */
+}
+
+    .create-button:hover {
+        background-color: white; /* Slightly white on hover */
+        color:#FFBB98;
+    }
+
+/* Styling for the 'Edit' and 'Delete' buttons */
+.edit-button, .delete-button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px; /* Rounded corners for the buttons */
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.edit-button {
+    background-color: #2196F3; /* Blue background for the button */
+    color: white;
+}
+
+.delete-button {
+    background-color: #f44336; /* Red background for the button */
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #1e88e5; /* Slightly darker blue on hover */
+}
+
+.delete-button:hover {
+    background-color: #e53935; /* Slightly darker red on hover */
+}
+
+/* Responsive table adjustments */
+@media screen and (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block; /* Stack the table cells on small screens */
+    }
+
+        thead tr {
+            position: absolute; /* Hide table headers on small screens */
+            top: -9999px;
+            left: -9999px;
+        }
+
+    tr {
+        margin-bottom: 10px; /* Space between table rows */
+    }
+
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%; /* Make space for the content */
+        text-align: right;
+    }
+
+        td:before {
+            position: absolute; /* Position the data-labels */
+            top: 6px;
+            left: 6px;
+            width: 45%; /* Width of the label */
+            padding-right: 10px;
+            white-space: nowrap;
+            content: attr(data-label); /* Use the data-label attribute */
+            text-align: left;
+            font-weight: bold;
+        }
+}

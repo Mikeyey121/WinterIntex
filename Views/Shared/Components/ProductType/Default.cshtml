@@ -7,7 +7,7 @@
 
 
 
-<form method="get" asp-controller="Home" asp-action="Products">
+<form method="get" asp-controller="Home" asp-action="Products" >
     <select name="categoryDescription" onchange="this.form.submit()" class="form-select">
         <option value="">All Categories</option>
         @foreach (string pt in Model ?? Enumerable.Empty<string>())
