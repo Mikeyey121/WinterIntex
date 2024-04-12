@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<Product>
+
 @{
     Layout = "_AdminLayout";
 }
 <h4>This is the products component</h4>
 
+<a class="btn btn-primary" asp-controller="Admin" asp-action="ProductCreate">Create a Product</a>
 <table class="table table-bordered">
     <thead class="fw-bold">
         <tr>
@@ -13,7 +15,7 @@
             <th>Price</th>
             <th>Primary Color</th>
             <th>Secondary Color</th>
-            <th>Category</th>
+
         </tr>
     </thead>
     <tbody>
@@ -24,14 +26,12 @@
                 <td>@product.Year</td>
                 <td>@product.num_parts</td>
                 <td>@product.Price</td>
-                <td>@product.Primary_Color</td>
-                <td>@product.Secondary_Color</td>
-                <td>
-                    @foreach (var cpo in product.CategoryProductOrders)
-                    {
-                        <div>@cpo.Category.Category_Description</div>
-                    }
-                </td>
+                <td>@product.PrimaryColor.Color_Description</td>
+                <td>@product.SecondaryColor.Color_Description</td>
+                <td><a class="btn btn-info" asp-controller="Admin" asp-action="Edit" asp-route-id="@product.Product_ID">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Admin" asp-action="Delete" asp-route-id="@product.Product_ID">Delete</a></td>
+
+
             </tr>
         }
     </tbody>

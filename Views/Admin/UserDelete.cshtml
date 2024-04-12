@@ -1,0 +1,14 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model UserDeleteViewModel
+
+<h2>Are you sure you want to delete @Model.UserName?</h2>
+<form asp-controller="Admin" asp-action="UserDeleteConfirmed" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Yes</button>
+</form>
+    <a asp-action="ListUsers" class="btn btn-primary">No</a>

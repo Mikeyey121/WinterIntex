@@ -1,4 +1,35 @@
 ﻿@{
     Layout = "_AdminLayout";
 }
+@model IEnumerable<Order>
+
 <h4>This is the orders component</h4>
+
+<table class="table table-bordered">
+    <thead class="fw-bold">
+        <tr>
+            <th>Customer Name</th>
+            <th>Date of Order</th>
+            <th>Amount</th>
+            <th>Fraud</th>
+        
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Customers.first_name</td>
+                <td>@(order.Date.HasValue ? order.Date.Value.ToString("MM-yyyy-dd") : "N/A")</td>
+                <td>$@(order.Amount.HasValue ? order.Amount.Value.ToString("C") : "N/A")</td>
+                <td>@order.Fraud</td>
+                
+             @*    <td><a class="btn btn-info" asp-controller="Admin" asp-action="Edit" asp-route-id="@order.Product_ID">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Admin" asp-action="Delete" asp-route-id="@order.Product_ID">Delete</a></td>
+ *@
+
+            </tr>
+        }
+    </tbody>
+</table>

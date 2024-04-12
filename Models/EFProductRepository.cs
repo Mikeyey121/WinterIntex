@@ -17,6 +17,7 @@
 
         public IQueryable<UserRecommendations> UserRecommendations => _context.UserRecommendations;
         public IQueryable<TopRecommendations> TopRecommendations => _context.TopRecommendations;
+        public IQueryable<Color> Color => _context.Color;
 
 
         // Method to create a product
@@ -36,6 +37,7 @@
         // Method to save changes for a product
         public void SaveProduct(Product p)
         {
+            _context.Update(p);
             _context.SaveChanges();
         }
     }

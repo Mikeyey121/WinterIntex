@@ -1,0 +1,70 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Product
+@using WinterIntex.Models
+
+<form method="post" asp-action="ProductForm" class="container mt-5">
+    <h2>Add a Record</h2>
+    <input type="hidden" asp-for="Product_ID" value="@ViewBag.MaxProduct"/>
+
+    <div class="mb-3">
+        <label asp-for="Primary_Color" class="form-label">Primary Color:</label>
+        <select asp-for="Primary_Color" class="form-select">
+            <option value="">Select a Category</option>
+            @foreach (Color c in ViewBag.Colors)
+            {
+                <option value="@c.Color_Code">@c.Color_Description</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Secondary_Color" class="form-label">Secondary Color:</label>
+        <select asp-for="Secondary_Color" class="form-select">
+            <option value="">Select a Category</option>
+            @foreach (Color c in ViewBag.Colors)
+            {
+                <option value="@c.Color_Code">@c.Color_Description</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Name:</label>
+        <input asp-for="Name" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Year" class="form-label">Year:</label>
+        <input asp-for="Year" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="num_parts" class="form-label">Number of Parts:</label>
+        <input type="number" asp-for="num_parts" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label">Price:</label>
+        <input asp-for="Price" class="form-select" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="img_Link" class="form-label">Image Link:</label>
+        <input asp-for="img_Link" class="form-select" required />
+
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Description:</label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+</form>
+
