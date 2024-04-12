@@ -29,51 +29,47 @@
 <br />
 
 <!-- Recommendations div -->
-<div class="text-center">
-    @if (User.Identity.IsAuthenticated)
-    {
-        <h3>Aurora's Recommendations for You</h3>
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="scrollable-cards-container">
-                    <div class="scrollable-cards-row">
-                        @foreach (var recProduct in Model.RecommendedProducts)
-                        {
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <partial name="ProductSummary" model="recProduct" />
+<section id="mobile-products" class="product-store position-relative padding-large no-padding-top">
+    <div class="text-center">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h3>Aurora's Recommendations for You</h3>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="scrollable-cards-container">
+                        <div class="scrollable-cards-row">
+                            @foreach (var recProduct in Model.RecommendedProducts)
+                            {
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <partial name="ProductSummary" model="recProduct" />
+                                    </div>
                                 </div>
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-    else
-    {
-        <h3>Best Sellers</h3>
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="scrollable-cards-container">
-                    <div class="scrollable-cards-row">
-                        @foreach (var recProduct in Model.RecommendedProducts)
-                        {
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <partial name="ProductSummary" model="recProduct" />
+        }
+        else
+        {
+            <h3>Best Sellers</h3>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="scrollable-cards-container">
+                        <div class="scrollable-cards-row">
+                            @foreach (var recProduct in Model.RecommendedProducts)
+                            {
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <partial name="ProductSummary" model="recProduct" />
+                                    </div>
                                 </div>
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
-
-
-
-
-
-
+        }
+    </div>
+</section>
