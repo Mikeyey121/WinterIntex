@@ -21,22 +21,23 @@ body {
     margin-bottom: 60px;
 }
 
-.bg-yellow {
-    background-color: #F2CD37 !important;
+.bg-blue {
+    background-color: #7D8E95 !important;
 }
 
 .bg-black {
-    background-color: #000000 !important;
+    background-color: #FFBB98 !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Saira Condensed';
-    src: url('~/fonts/SairaCondensed-Regular.ttf') format('truetype');
+    font-family: 'Raleway';
+    src: url('~/fonts/Raleway-Regular.ttf') format('truetype');
+    color: #344648
 }
 
 nav {
-    font-family: 'Saira Condensed';
-    src: url('~/fonts/SairaCondensed-Regular.ttf') format('truetype');
+    font-family: 'Raleway';
+    src: url('~/fonts/Raleway-Regular.ttf') format('truetype');
     font-size: 1.5vw;
 }
 
@@ -84,7 +85,7 @@ nav {
     }
 
 body {
-    background-color: #F5F5F5; /* Off-white background color */
+    background-color: #F7F4EF; /* Off-white background color */
     color: #000000; /* Black text color */
 }
 
@@ -117,6 +118,28 @@ body {
         flex: 0 0 auto;
         width: calc(100% / 3); /* Adjust based on your desired width */
         max-width: calc(100% / 3); /* Adjust based on your desired width */
+    }
+
+.grid-card {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    width: 300px;
+    height: 350px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.btn-invert {
+    background-color: #7D8E95;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    .btn-invert:hover {
+        background-color: white;
+        color: #7D8E95;
     }
 
 

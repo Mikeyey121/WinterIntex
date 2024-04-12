@@ -5,23 +5,23 @@
 }
 
 <!-- Hero div -->
-<div class="bg-black text-white">
+<div class>
     <div class="container">
         <div class="row m-1 p-1 align-items-center">
-            <div class="col-md-5 text-center text-md-start">
+            <div class="col-md-12 text-center text-md-start">
                 <br />
                 <h1 class="fw-bold" style="font-size: 4.5vw;">Welcome to Aurora's LEGO Shop</h1>
                 <h4 class="fw-normal" style="font-size: 1.5vw;">With new arrivals coming to you all summer long</h4>
                 <br />
                 <div class="text-center">
-                    <a asp-controller="Home" asp-action="Products" class="btn btn-primary" style="font-size: 1.8vw; border-radius: 10px; font-family: 'Saira Condensed', sans-serif; width: 250px">Shop Now</a>
+                    <a asp-controller="Home" asp-action="Products" class="btn btn-primary" style="background-color: #FFBB98; font-size: 1.8vw; border-radius: 10px; font-family: 'Saira Condensed', sans-serif; width: 250px">Shop Now</a>
                 </div>
                 <br />
             </div>
-            <div class="col-md-7 text-center">
+@*             <div class="col-md-7 text-center">
                 <br class="d-md-none">
                 <img src="~/img/giphy (1).gif" alt="LEGO Batman gif" class="img-fluid" style="max-width: 100%;">
-            </div>
+            </div> *@
         </div>
         
     </div>
@@ -39,10 +39,8 @@
                     <div class="scrollable-cards-row">
                         @foreach (var recProduct in Model.RecommendedProducts)
                         {
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <partial name="ProductSummary" model="recProduct" />
-                                </div>
+                            <div class="col-md-3">
+                                <partial name="ProductSummary" model="recProduct" />
                             </div>
                         }
                     </div>
@@ -52,17 +50,15 @@
     }
     else
     {
-        <h3>Best Sellers</h3>
+        <h3>My Favorite Sets</h3>
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="scrollable-cards-container">
                     <div class="scrollable-cards-row">
                         @foreach (var recProduct in Model.RecommendedProducts)
                         {
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <partial name="ProductSummary" model="recProduct" />
-                                </div>
+                            <div class="col-md-3">
+                                <partial name="ProductSummary" model="recProduct" />
                             </div>
                         }
                     </div>
